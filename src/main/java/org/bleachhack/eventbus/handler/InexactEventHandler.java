@@ -1,4 +1,4 @@
-package org.bleachhack.eventbus.handler;
+package org.grayhack.eventbus.handler;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -7,9 +7,9 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.apache.logging.log4j.Logger;
-import org.bleachhack.event.Event;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.eventbus.BleachSubscriber;
+import org.grayhack.event.Event;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.eventbus.GraySubscriber;
 
 /**
  * Slower event handler that allows events to the posted to children of a event class.
@@ -17,7 +17,7 @@ import org.bleachhack.eventbus.BleachSubscriber;
 public class InexactEventHandler extends EventHandler {
 
 	// <Event Class, Subscribers>
-	private final Map<Class<?>, List<BleachSubscriber>> subscribers = new ConcurrentHashMap<>();
+	private final Map<Class<?>, List<GraySubscriber>> subscribers = new ConcurrentHashMap<>();
 
 	public InexactEventHandler(String id) {
 		super(id);
@@ -26,8 +26,8 @@ public class InexactEventHandler extends EventHandler {
 	public boolean subscribe(Object object) {
 		boolean added = false;
 		for (Method m: object.getClass().getDeclaredMethods()) {
-			if (m.isAnnotationPresent(BleachSubscribe.class) && m.getParameters().length != 0) {
-				subscribers.computeIfAbsent(m.getParameters()[0].getType(), k -> new CopyOnWriteArrayList<>()).add(new BleachSubscriber(object, m));
+			if (m.isAnnotationPresent(GraySubscribe.class) && m.getParameters().length != 0) {
+				subscribers.computeIfAbsent(m.getParameters()[0].getType(), k -> new CopyOnWriteArrayList<>()).add(new GraySubscriber(object, m));
 				added = true;
 			}
 		}
@@ -46,9 +46,9 @@ public class InexactEventHandler extends EventHandler {
 	}
 
 	public void post(Event event, Logger logger) {
-		for (Entry<Class<?>, List<BleachSubscriber>> entry: subscribers.entrySet()) {
+		for (Entry<Class<?>, List<GraySubscriber>> entry: subscribers.entrySet()) {
 			if (entry.getKey().isAssignableFrom(event.getClass())) {
-				for (BleachSubscriber s: entry.getValue()) {
+				for (GraySubscriber s: entry.getValue()) {
 					try {
 						s.callSubscriber(event);
 					} catch (Throwable t) {

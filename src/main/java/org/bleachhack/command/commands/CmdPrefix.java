@@ -1,24 +1,24 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.command.commands;
+package org.grayhack.command.commands;
 
-import org.bleachhack.command.Command;
-import org.bleachhack.command.CommandCategory;
-import org.bleachhack.command.exception.CmdSyntaxException;
-import org.bleachhack.setting.option.Option;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.io.BleachFileHelper;
+import org.grayhack.command.Command;
+import org.grayhack.command.CommandCategory;
+import org.grayhack.command.exception.CmdSyntaxException;
+import org.grayhack.setting.option.Option;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.io.GrayFileHelper;
 
 public class CmdPrefix extends Command {
 
 	public CmdPrefix() {
-		super("prefix", "Sets the BleachHack command prefix.", "prefix <prefix>", CommandCategory.MISC);
+		super("prefix", "Sets the GrayHack command prefix.", "prefix <prefix>", CommandCategory.MISC);
 	}
 
 	@Override
@@ -28,8 +28,8 @@ public class CmdPrefix extends Command {
 		}
 
 		Option.CHAT_COMMAND_PREFIX.setValue(args[0]);
-		BleachFileHelper.SCHEDULE_SAVE_OPTIONS.set(true);
-		BleachLogger.info("Set Prefix To: \"" + getPrefix() + "\"");
+		GrayFileHelper.SCHEDULE_SAVE_OPTIONS.set(true);
+		GrayLogger.info("Set Prefix To: \"" + getPrefix() + "\"");
 	}
 
 }

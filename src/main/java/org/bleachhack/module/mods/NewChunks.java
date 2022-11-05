@@ -1,27 +1,27 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import net.minecraft.fluid.FluidState;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingColor;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.color.QuadColor;
-import org.bleachhack.util.world.ChunkProcessor;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingColor;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.color.QuadColor;
+import org.grayhack.util.world.ChunkProcessor;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -94,7 +94,7 @@ public class NewChunks extends Module {
 		processor.start();
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onWorldRender(EventWorldRender.Post event) {
 		int renderY = mc.world.getBottomY() + getSetting(0).asSlider().getValueInt();
 		int opacity = (int) (getSetting(2).asToggle().getChild(0).asSlider().getValueFloat() * 255);

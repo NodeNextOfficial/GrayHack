@@ -1,18 +1,18 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingToggle;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingToggle;
 
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
@@ -25,7 +25,7 @@ public class AntiHunger extends Module {
 				new SettingToggle("Relaxed", false).withDesc("Only activates every other ticks, might fix getting fly kicked."));
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onSendPacket(EventPacket.Send event) {
 		if (event.getPacket() instanceof PlayerMoveC2SPacket) {
 			if (mc.player.getVelocity().y != 0 && !mc.options.jumpKey.isPressed() && (!bool || !getSetting(0).asToggle().getState())) {

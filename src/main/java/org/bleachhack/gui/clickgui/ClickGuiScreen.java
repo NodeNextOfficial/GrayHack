@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.gui.clickgui;
+package org.grayhack.gui.clickgui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.bleachhack.gui.clickgui.window.ClickGuiWindow;
-import org.bleachhack.gui.clickgui.window.ClickGuiWindow.Tooltip;
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.gui.window.WindowScreen;
+import org.grayhack.gui.clickgui.window.ClickGuiWindow;
+import org.grayhack.gui.clickgui.window.ClickGuiWindow.Tooltip;
+import org.grayhack.gui.window.Window;
+import org.grayhack.gui.window.WindowScreen;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.sound.PositionedSoundInstance;

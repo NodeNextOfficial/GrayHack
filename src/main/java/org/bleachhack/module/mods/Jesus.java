@@ -1,19 +1,19 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventBlockShape;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingMode;
+import org.grayhack.event.events.EventBlockShape;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingMode;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FluidState;
@@ -28,7 +28,7 @@ public class Jesus extends Module {
 				new SettingMode("Mode", "Vibrate", "Solid").withDesc("The jesus mode."));
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		Entity e = mc.player.getRootVehicle();
 
@@ -47,7 +47,7 @@ public class Jesus extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onBlockShape(EventBlockShape event) {
 		if (getSetting(0).asMode().getMode() == 1
 				&& !mc.world.getFluidState(event.getPos()).isEmpty()

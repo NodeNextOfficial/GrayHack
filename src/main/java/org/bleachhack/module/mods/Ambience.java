@@ -1,24 +1,24 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventBiomeColor;
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.event.events.EventSkyRender;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingColor;
-import org.bleachhack.setting.module.SettingMode;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
+import org.grayhack.event.events.EventBiomeColor;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.event.events.EventSkyRender;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingColor;
+import org.grayhack.setting.module.SettingMode;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
 
 import net.minecraft.client.render.DimensionEffects;
 import net.minecraft.network.packet.s2c.play.DisconnectS2CPacket;
@@ -74,7 +74,7 @@ public class Ambience extends Module {
 		super.onDisable(inWorld);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (getSetting(0).asToggle().getState()) {
 			if (!weatherManager.isActive()) {
@@ -99,7 +99,7 @@ public class Ambience extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void readPacket(EventPacket.Read event) {
 		if (event.getPacket() instanceof GameStateChangeS2CPacket && getSetting(0).asToggle().getState()) {
 			GameStateChangeS2CPacket packet = (GameStateChangeS2CPacket) event.getPacket();
@@ -123,7 +123,7 @@ public class Ambience extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onBiomeColor(EventBiomeColor event) {
 		int type = event instanceof EventBiomeColor.Water ? 2 : 1;
 
@@ -132,7 +132,7 @@ public class Ambience extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onSkyColor(EventSkyRender.Color event) {
 		if (getCurrentDimSetting().getState() && getCurrentDimSetting().getChild(0).asToggle().getState()) {
 			int[] color = getCurrentDimSetting().getChild(0).asToggle().getChild(1).asColor().getRGBArray();
@@ -140,7 +140,7 @@ public class Ambience extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onSkyProperties(EventSkyRender.Properties event) {
 		if (getCurrentDimSetting().getState() && getCurrentDimSetting().getChild(0).asToggle().getState()
 				&& getCurrentDimSetting().getChild(0).asToggle().getChild(0).asToggle().getState()) {

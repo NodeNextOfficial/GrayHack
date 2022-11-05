@@ -1,4 +1,4 @@
-package org.bleachhack.util.shader;
+package org.grayhack.util.shader;
 
 import java.io.IOException;
 import java.io.InputStream;

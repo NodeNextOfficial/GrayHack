@@ -1,21 +1,21 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.gui.clickgui;
+package org.grayhack.gui.clickgui;
 
 import java.util.List;
 
-import org.bleachhack.gui.clickgui.window.ModuleWindow;
-import org.bleachhack.gui.clickgui.window.UIContainer;
-import org.bleachhack.gui.clickgui.window.UIWindow;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.module.mods.UI;
-import org.bleachhack.util.io.BleachFileHelper;
+import org.grayhack.gui.clickgui.window.ModuleWindow;
+import org.grayhack.gui.clickgui.window.UIContainer;
+import org.grayhack.gui.clickgui.window.UIWindow;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.module.mods.UI;
+import org.grayhack.util.io.GrayFileHelper;
 
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
@@ -49,7 +49,7 @@ public class UIClickGuiScreen extends ClickGuiScreen {
 	}
 
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		BleachFileHelper.SCHEDULE_SAVE_UI.set(true);
+		GrayFileHelper.SCHEDULE_SAVE_UI.set(true);
 
 		uiContainer.updatePositions(width, height);
 

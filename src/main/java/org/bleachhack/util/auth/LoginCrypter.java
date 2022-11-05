@@ -1,15 +1,15 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.util.auth;
+package org.grayhack.util.auth;
 
 import com.google.common.hash.Hashing;
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.util.GrayLogger;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -42,7 +42,7 @@ public class LoginCrypter {
 			key = new SecretKeySpec(pass, "AES");
 			dcipher = Cipher.getInstance("AES");
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error initing login crypter");
+			GrayLogger.logger.error("Error initing login crypter");
 		}
 	}
 

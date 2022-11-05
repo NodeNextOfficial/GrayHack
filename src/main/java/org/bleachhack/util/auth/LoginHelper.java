@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.util.auth;
+package org.grayhack.util.auth;
 
 import java.net.Proxy;
 import java.net.URI;
@@ -21,8 +21,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.io.BleachOnlineMang;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.io.GrayOnlineMang;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -80,7 +80,7 @@ public final class LoginHelper {
 	// [XBL Token, XSTS Token, Playfab Token]
 	private static JsonArray getXboxToken(String email, String password) throws AuthenticationException {
 		// Generate a Microsoft OAuth token
-		HttpResponse<String> oauthResponse = BleachOnlineMang.sendRequest(MS_OAUTH_URL, "GET", null, null, 5000, BodyHandlers.ofString(StandardCharsets.UTF_8));
+		HttpResponse<String> oauthResponse = GrayOnlineMang.sendRequest(MS_OAUTH_URL, "GET", null, null, 5000, BodyHandlers.ofString(StandardCharsets.UTF_8));
 
 		throwIfInvalid(oauthResponse, true, "Failed to generate an OAuth token!");
 
@@ -98,7 +98,7 @@ public final class LoginHelper {
 				.findFirst().get();
 
 		// Login to Microsoft
-		HttpResponse<String> loginResponse = BleachOnlineMang.sendRequest(
+		HttpResponse<String> loginResponse = GrayOnlineMang.sendRequest(
 				URI.create(loginMatcher.group(1)),
 				"POST",
 				new String[] {
@@ -122,7 +122,7 @@ public final class LoginHelper {
 				.collect(Collectors.joining("; "));
 
 		// Get Redirect page to the access token
-		HttpResponse<String> redirectResponse = BleachOnlineMang.sendRequest(
+		HttpResponse<String> redirectResponse = GrayOnlineMang.sendRequest(
 				URI.create(redirectMatcher.group(1)),
 				"POST",
 				new String[] {
@@ -144,7 +144,7 @@ public final class LoginHelper {
 	}
 
 	private static Session getSessionFromXsts(String xstsId, String xstsToken) throws AuthenticationException {
-		HttpResponse<String> mcResponse = BleachOnlineMang.sendRequest(
+		HttpResponse<String> mcResponse = GrayOnlineMang.sendRequest(
 				MC_AUTH_URL,
 				"POST",
 				new String[] {
@@ -158,7 +158,7 @@ public final class LoginHelper {
 
 		String mcToken = JsonParser.parseString(mcResponse.body()).getAsJsonObject().get("access_token").getAsString();
 
-		HttpResponse<String> profileResponse = BleachOnlineMang.sendRequest(
+		HttpResponse<String> profileResponse = GrayOnlineMang.sendRequest(
 				URI.create("https://api.minecraftservices.com/minecraft/profile"),
 				"GET",
 				new String[] { "Authorization", "Bearer " + mcToken },
@@ -183,10 +183,10 @@ public final class LoginHelper {
 
 	private static void throwIfInvalid(HttpResponse<?> response, boolean checkStatus, String reason) throws AuthenticationException {
 		if (response == null || (checkStatus && (response.statusCode() < 200 || response.statusCode() >= 300))) {
-			BleachLogger.logger.error("> Response: " + response);
+			GrayLogger.logger.error("> Response: " + response);
 			if (response != null) {
-				BleachLogger.logger.error("> Headers: " + response.headers());
-				BleachLogger.logger.error("> Body: " + response.body());
+				GrayLogger.logger.error("> Headers: " + response.headers());
+				GrayLogger.logger.error("> Body: " + response.body());
 			}
 
 			AuthenticationException authEx = new AuthenticationException(reason);

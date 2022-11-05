@@ -1,10 +1,10 @@
-package org.bleachhack.mixin;
+package org.grayhack.mixin;
 
 import java.util.List;
 import java.util.zip.Inflater;
 
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.module.mods.AntiChunkBan;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.module.mods.AntiChunkBan;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

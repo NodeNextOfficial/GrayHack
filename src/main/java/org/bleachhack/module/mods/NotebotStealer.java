@@ -1,23 +1,23 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import java.util.Map.Entry;
 
-import org.bleachhack.event.events.EventSoundPlay;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.module.mods.Notebot.Note;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.io.BleachFileMang;
+import org.grayhack.event.events.EventSoundPlay;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.module.mods.Notebot.Note;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.io.GrayFileMang;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
@@ -44,26 +44,26 @@ public class NotebotStealer extends Module {
 		int i = 0;
 		StringBuilder s = new StringBuilder();
 
-		while (BleachFileMang.fileExists("notebot/notebot" + i + ".txt"))
+		while (GrayFileMang.fileExists("notebot/notebot" + i + ".txt"))
 			i++;
 
 		for (Entry<Integer, Note> note : notes.entries())
 			s.append(note.getKey()).append(":").append(note.getValue().pitch).append(":").append(note.getValue().instrument).append("\n");
 
-		BleachFileMang.createEmptyFile("notebot/notebot" + i + ".txt");
-		BleachFileMang.appendFile("notebot/notebot" + i + ".txt", s.toString());
-		BleachLogger.info("Saved Song As: notebot" + i + ".txt [" + notes.size() + " Notes]");
+		GrayFileMang.createEmptyFile("notebot/notebot" + i + ".txt");
+		GrayFileMang.appendFile("notebot/notebot" + i + ".txt", s.toString());
+		GrayLogger.info("Saved Song As: notebot" + i + ".txt [" + notes.size() + " Notes]");
 
 		super.onDisable(inWorld);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (!notes.isEmpty())
 			ticks++;
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onSoundPlay(EventSoundPlay.Normal event) {
 		if (event.getInstance().getId().getPath().contains("note_block")) {
 			int type = 0;

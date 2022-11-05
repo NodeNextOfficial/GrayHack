@@ -1,7 +1,7 @@
-package org.bleachhack.util.render;
+package org.grayhack.util.render;
 
-import org.bleachhack.mixin.AccessorFrustum;
-import org.bleachhack.mixin.AccessorWorldRenderer;
+import org.grayhack.mixin.AccessorFrustum;
+import org.grayhack.mixin.AccessorWorldRenderer;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Frustum;

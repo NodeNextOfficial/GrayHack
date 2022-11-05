@@ -1,23 +1,23 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventRenderBlock;
-import org.bleachhack.event.events.EventRenderFluid;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingBlockList;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.world.WorldUtils;
+import org.grayhack.event.events.EventRenderBlock;
+import org.grayhack.event.events.EventRenderFluid;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingBlockList;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.world.WorldUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -81,22 +81,22 @@ public class Xray extends Module {
 		super.onDisable(inWorld);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick eventPreUpdate) {
 		mc.options.getGamma().setValue(69.420);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRenderBlockLight(EventRenderBlock.Light event) {
 		event.setLight(1f);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRenderBlockOpaque(EventRenderBlock.Opaque event) {
 		event.setOpaque(true);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRenderBlockDrawSide(EventRenderBlock.ShouldDrawSide event) {
 		if (getSetting(2).asList(Block.class).contains(event.getState().getBlock())) {
 			event.setDrawSide(true);
@@ -105,7 +105,7 @@ public class Xray extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRenderBlockTesselate(EventRenderBlock.Tesselate event) {
 		if (!getSetting(2).asList(Block.class).contains(event.getState().getBlock())) {
 			if (getSetting(1).asToggle().getState()) {
@@ -124,14 +124,14 @@ public class Xray extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRenderBlockLayer(EventRenderBlock.Layer event) {
 		if (getSetting(1).asToggle().getState() && !getSetting(2).asList(Block.class).contains(event.getState().getBlock())) {
 			event.setLayer(RenderLayer.getTranslucent());
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRenderFluid(EventRenderFluid event) {
 		if (!getSetting(0).asToggle().getState()) {
 			event.setCancelled(true);

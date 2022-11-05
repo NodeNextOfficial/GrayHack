@@ -1,19 +1,19 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.command.commands;
+package org.grayhack.command.commands;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import org.bleachhack.command.Command;
-import org.bleachhack.command.CommandCategory;
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.command.Command;
+import org.grayhack.command.CommandCategory;
+import org.grayhack.util.GrayLogger;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -32,21 +32,21 @@ public class CmdEntityStats extends Command {
 			if (mc.player.getVehicle() instanceof AbstractHorseEntity) {
 				AbstractHorseEntity h = (AbstractHorseEntity) mc.player.getVehicle();
 
-				BleachLogger.info("Entity Stats:");
-				BleachLogger.info("\u00a7cMax Health: \u00a7r" + (int) h.getMaxHealth() + " HP");
-				BleachLogger.info("\u00a7cSpeed: \u00a7r" + getSpeed(h) + " m/s");
-				BleachLogger.info("\u00a7cJump: \u00a7r" + getJumpHeight(h) + " m");
+				GrayLogger.info("Entity Stats:");
+				GrayLogger.info("\u00a7cMax Health: \u00a7r" + (int) h.getMaxHealth() + " HP");
+				GrayLogger.info("\u00a7cSpeed: \u00a7r" + getSpeed(h) + " m/s");
+				GrayLogger.info("\u00a7cJump: \u00a7r" + getJumpHeight(h) + " m");
 			} else if (mc.player.getVehicle() instanceof LivingEntity) {
 				LivingEntity l = (LivingEntity) mc.player.getVehicle();
 
-				BleachLogger.info("Entity Stats:");
-				BleachLogger.info("\u00a7cMax Health: \u00a7r" + (int) l.getMaxHealth() + " HP");
-				BleachLogger.info("\u00a7cSpeed: \u00a7r" + getSpeedLiving(l) + " m/s");
+				GrayLogger.info("Entity Stats:");
+				GrayLogger.info("\u00a7cMax Health: \u00a7r" + (int) l.getMaxHealth() + " HP");
+				GrayLogger.info("\u00a7cSpeed: \u00a7r" + getSpeedLiving(l) + " m/s");
 			} else {
-				BleachLogger.error("Current vehicle doesn't have stats.");
+				GrayLogger.error("Current vehicle doesn't have stats.");
 			}
 		} else {
-			BleachLogger.error("Not riding a living entity.");
+			GrayLogger.error("Not riding a living entity.");
 		}
 	}
 

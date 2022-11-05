@@ -1,11 +1,11 @@
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingMode;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingMode;
 
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 
@@ -41,7 +41,7 @@ public class Sneak extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (getSetting(0).asMode().getMode() == 0) {
 			mc.options.sneakKey.setPressed(true);
@@ -51,7 +51,7 @@ public class Sneak extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onSendPacket(EventPacket.Send event) {
 		if (event.getPacket() instanceof ClientCommandC2SPacket) {
 			ClientCommandC2SPacket p = (ClientCommandC2SPacket) event.getPacket();

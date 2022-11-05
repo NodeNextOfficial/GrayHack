@@ -1,5 +1,5 @@
 {
-  "package": "org.bleachhack.command.commands",
+  "package": "org.grayhack.command.commands",
   "commands": [
 	"CmdBind",
 	"CmdCI",

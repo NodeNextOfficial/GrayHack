@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.command.commands;
+package org.grayhack.command.commands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,9 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.bleachhack.command.Command;
-import org.bleachhack.command.CommandCategory;
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.command.Command;
+import org.grayhack.command.CommandCategory;
+import org.grayhack.util.GrayLogger;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -34,7 +34,7 @@ public class CmdRbook extends Command {
 		ItemStack item = mc.player.getInventory().getMainHandStack();
 
 		if (item.getItem() != Items.WRITABLE_BOOK) {
-			BleachLogger.error("Not Holding A Writable Book!");
+			GrayLogger.error("Not Holding A Writable Book!");
 			return;
 		}
 
@@ -50,7 +50,7 @@ public class CmdRbook extends Command {
 
 		mc.player.networkHandler.sendPacket(new BookUpdateC2SPacket(mc.player.getInventory().selectedSlot, textSplit, Optional.empty()));
 
-		BleachLogger.info("Written book (" + pages + " pages, " + pageChars + " chars/page)");
+		GrayLogger.info("Written book (" + pages + " pages, " + pageChars + " chars/page)");
 	}
 
 }

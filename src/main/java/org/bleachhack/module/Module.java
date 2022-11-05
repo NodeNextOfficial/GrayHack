@@ -1,21 +1,21 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module;
+package org.grayhack.module;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.bleachhack.BleachHack;
-import org.bleachhack.setting.module.ModuleSetting;
-import org.bleachhack.setting.module.SettingKey;
-import org.bleachhack.util.io.BleachFileHelper;
+import org.grayhack.GrayHack;
+import org.grayhack.setting.module.ModuleSetting;
+import org.grayhack.setting.module.SettingKey;
+import org.grayhack.util.io.GrayFileHelper;
 
 import net.minecraft.client.MinecraftClient;
 
@@ -55,17 +55,17 @@ public class Module {
 	}
 
 	public void onEnable(boolean inWorld) {
-		BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
+		GrayFileHelper.SCHEDULE_SAVE_MODULES.set(true);
 
-		subscribed = BleachHack.eventBus.subscribe(this);
+		subscribed = GrayHack.eventBus.subscribe(this);
 	}
 
 	public void onDisable(boolean inWorld) {
 		if (subscribed) {
-			BleachHack.eventBus.unsubscribe(this);
+			GrayHack.eventBus.unsubscribe(this);
 		}
 
-		BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
+		GrayFileHelper.SCHEDULE_SAVE_MODULES.set(true);
 	}
 
 	public String getName() {
@@ -91,7 +91,7 @@ public class Module {
 	public void setKey(int key) {
 		this.key.setValue(key);
 
-		BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
+		GrayFileHelper.SCHEDULE_SAVE_MODULES.set(true);
 	}
 
 	public List<ModuleSetting<?>> getSettings() {

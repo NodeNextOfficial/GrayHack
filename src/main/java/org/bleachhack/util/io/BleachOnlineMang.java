@@ -1,14 +1,14 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.util.io;
+package org.grayhack.util.io;
 
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.util.GrayLogger;
 
 import java.io.IOException;
 import java.net.URI;
@@ -23,13 +23,13 @@ import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Utils for online BleachHack Resources.
+ * Utils for online GrayHack Resources.
  */
-public class BleachOnlineMang {
+public class GrayOnlineMang {
 
 	public static final HttpClient HTTP_CLIENT = HttpClient.newBuilder().followRedirects(Redirect.ALWAYS).build();
-	private static final URI RESOURCE_URL = URI.create("https://bleachhack.org/resources/");
-	private static final URI API_URL = URI.create("http://api0.bleachhack.org/"); // using api0 because of compatibility with BH 1.2.1 and under.
+	private static final URI RESOURCE_URL = URI.create("https://grayhack.org/resources/");
+	private static final URI API_URL = URI.create("http://api0.grayhack.org/"); // using api0 because of compatibility with BH 1.2.1 and under.
 
 	public static URI getResourceUrl() {
 		return RESOURCE_URL;
@@ -40,22 +40,22 @@ public class BleachOnlineMang {
 	}
 
 	public static <T> T getResource(String path, BodyHandler<T> handler) {
-		BleachLogger.logger.info("Getting Resource (/" + path + ")");
+		GrayLogger.logger.info("Getting Resource (/" + path + ")");
 		return sendRequest(RESOURCE_URL.resolve(path), "GET", null, null, 5000, handler).body();
 	}
 
 	public static <T> CompletableFuture<T> getResourceAsync(String path, BodyHandler<T> handler) {
-		BleachLogger.logger.info("Getting Resource (/" + path + ")");
+		GrayLogger.logger.info("Getting Resource (/" + path + ")");
 		return sendAsyncRequest(RESOURCE_URL.resolve(path), "GET", null, null, 5000, handler).thenApply(HttpResponse::body);
 	}
 
 	public static <T> T sendApiGet(String path, BodyHandler<T> handler) {
-		BleachLogger.logger.info("Trying to call API (GET, /" + path + ")");
+		GrayLogger.logger.info("Trying to call API (GET, /" + path + ")");
 		return sendRequest(API_URL.resolve(path), "GET", null, null, 5000, handler).body();
 	}
 
 	public static <T> T sendApiPost(String path, String body, BodyHandler<T> handler) {
-		BleachLogger.logger.info("Trying to call API (POST, /" + path + ", " + body + ")");
+		GrayLogger.logger.info("Trying to call API (POST, /" + path + ", " + body + ")");
 		return sendRequest(API_URL.resolve(path), "POST", null, body, 5000, handler).body();
 	}
 
@@ -76,7 +76,7 @@ public class BleachOnlineMang {
 
 			return client.send(rqBuilder.build(), handler);
 		} catch (IOException | InterruptedException e) {
-			BleachLogger.logger.error(e);
+			GrayLogger.logger.error(e);
 			return null;
 		}
 	}

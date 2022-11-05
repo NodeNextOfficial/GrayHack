@@ -1,7 +1,7 @@
-package org.bleachhack.mixin;
+package org.grayhack.mixin;
 
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.module.mods.AntiChunkBan;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.module.mods.AntiChunkBan;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;

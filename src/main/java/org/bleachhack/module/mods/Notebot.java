@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import net.minecraft.block.NoteBlock;
 import net.minecraft.block.enums.Instrument;
@@ -16,19 +16,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 
-import org.bleachhack.command.Command;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingMode;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.NotebotUtils;
-import org.bleachhack.util.io.BleachFileMang;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.color.QuadColor;
+import org.grayhack.command.Command;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingMode;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.NotebotUtils;
+import org.grayhack.util.io.GrayFileMang;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.color.QuadColor;
 
 import com.google.common.collect.Multimap;
 
@@ -72,11 +72,11 @@ public class Notebot extends Module {
 		blockPitches.clear();
 
 		if (!mc.interactionManager.getCurrentGameMode().isSurvivalLike()) {
-			BleachLogger.error("Not In Survival Mode!");
+			GrayLogger.error("Not In Survival Mode!");
 			setEnabled(false);
 			return;
 		} else if (song == null) {
-			BleachLogger.error("No Song Loaded!, Use " + Command.getPrefix() + "notebot to select a song.");
+			GrayLogger.error("No Song Loaded!, Use " + Command.getPrefix() + "notebot to select a song.");
 			setEnabled(false);
 			return;
 		}
@@ -114,11 +114,11 @@ public class Notebot extends Module {
 		int required = getSetting(2).asToggle().getState()
 				? (int) song.requirements.stream().mapToInt(i -> i.instrument).distinct().count() : song.requirements.size();
 		if (required > blockPitches.size()) {
-			BleachLogger.warn("Mapping Error: Missing " + (required - blockPitches.size()) + " Noteblocks");
+			GrayLogger.warn("Mapping Error: Missing " + (required - blockPitches.size()) + " Noteblocks");
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRender(EventWorldRender.Post event) {
 		for (Entry<BlockPos, Integer> e : blockPitches.entrySet()) {
 			if (getNote(e.getKey()) != e.getValue()) {
@@ -129,7 +129,7 @@ public class Notebot extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		// Tune Noteblocks
 		int tuneMode = getSetting(0).asToggle().getChild(0).asMode().getMode();
@@ -173,14 +173,14 @@ public class Notebot extends Module {
 		// Loop
 		if (timer - 10 > song.length) {
 			if (getSetting(3).asToggle().getState()) {
-				File[] files = BleachFileMang.getDir().resolve("notebot/").toFile().listFiles();
+				File[] files = GrayFileMang.getDir().resolve("notebot/").toFile().listFiles();
 				Path path = files[ThreadLocalRandom.current().nextInt(files.length)].toPath();
 
 				song = NotebotUtils.parse(path);
 
 				setEnabled(false);
 				setEnabled(true);
-				BleachLogger.info("Now Playing: \u00a7a" + song.filename);
+				GrayLogger.info("Now Playing: \u00a7a" + song.filename);
 			} else if (getSetting(1).asToggle().getState()) {
 				timer = -10;
 			}

@@ -1,4 +1,4 @@
-package org.bleachhack.mixin;
+package org.grayhack.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

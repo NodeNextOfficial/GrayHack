@@ -1,5 +1,5 @@
 {
-  "package": "org.bleachhack.module.mods",
+  "package": "org.grayhack.module.mods",
   "modules": [
     "AirPlace",
     "Ambience",

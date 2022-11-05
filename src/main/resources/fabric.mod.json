@@ -1,31 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "bleachhack",
+  "id": "grayhack",
   "version": "${version}",
 
-  "name": "BleachHack",
+  "name": "GrayHack",
   "description": "gamer obama utility mod",
   "authors": [
-    "Bleach"
+    "Gray"
   ],
   "contact": {
-    "homepage": "https://bleachhack.org/",
-    "sources": "https://github.com/BleachDrinker420/BleachHack"
+    "homepage": "https://grayhack.org/",
+    "sources": "https://github.com/GrayDrinker420/GrayHack"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/bleachhack/icon.png",
+  "icon": "assets/grayhack/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.bleachhack.BleachHack"
+      "org.grayhack.GrayHack"
     ]
   },
   "mixins": [
-    "bleachhack.mixins.json"
+    "grayhack.mixins.json"
   ],
-  "accessWidener" : "bleachhack.accesswidener",
+  "accessWidener" : "grayhack.accesswidener",
   "depends": {
     "minecraft": ">=1.19.1",
     "fabricloader": ">=0.13.3"

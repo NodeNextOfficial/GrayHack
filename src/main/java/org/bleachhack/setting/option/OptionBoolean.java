@@ -1,10 +1,10 @@
-package org.bleachhack.setting.option;
+package org.grayhack.setting.option;
 
 import java.util.function.Consumer;
 
-import org.bleachhack.gui.window.widget.WindowButtonWidget;
-import org.bleachhack.gui.window.widget.WindowWidget;
-import org.bleachhack.setting.SettingDataHandlers;
+import org.grayhack.gui.window.widget.WindowButtonWidget;
+import org.grayhack.gui.window.widget.WindowWidget;
+import org.grayhack.setting.SettingDataHandlers;
 
 public class OptionBoolean extends Option<Boolean> {
 

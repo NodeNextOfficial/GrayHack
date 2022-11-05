@@ -1,20 +1,20 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.util;
+package org.grayhack.util;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.google.gson.JsonArray;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.packet.s2c.play.PlayerListS2CPacket;
 
-import org.bleachhack.setting.option.Option;
-import org.bleachhack.util.io.BleachOnlineMang;
+import org.grayhack.setting.option.Option;
+import org.grayhack.util.io.GrayOnlineMang;
 
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Collection;
@@ -26,7 +26,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
-public class BleachPlayerManager {
+public class GrayPlayerManager {
 
 	private static final MinecraftClient mc = MinecraftClient.getInstance();
 	private static final Pattern UUID_ADD_DASHES_PATTERN = Pattern.compile("(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)");
@@ -37,7 +37,7 @@ public class BleachPlayerManager {
 	private Set<UUID> players = new HashSet<>();
 	private Set<UUID> playerQueue = new HashSet<>();
 
-	public BleachPlayerManager() {
+	public GrayPlayerManager() {
 		playerExecutor = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryBuilder().setDaemon(true).build());
 		playerExecutor.scheduleAtFixedRate(() -> {
 			if (!playerQueue.isEmpty()) {
@@ -45,7 +45,7 @@ public class BleachPlayerManager {
 				playerQueue.forEach(p -> playersJson.add(p.toString()));
 				playerQueue.clear();
 
-				byte[] response = BleachOnlineMang.sendApiPost("online/inlistbin", playersJson.toString(), BodyHandlers.ofByteArray());
+				byte[] response = GrayOnlineMang.sendApiPost("online/inlistbin", playersJson.toString(), BodyHandlers.ofByteArray());
 
 				if (response != null) {
 					boolean[] binary = toBinaryArray(response);
@@ -74,7 +74,7 @@ public class BleachPlayerManager {
 				JsonArray playersJson = new JsonArray();
 				players.forEach(p -> playersJson.add(p.toString()));
 
-				byte[] response = BleachOnlineMang.sendApiPost("online/inlistbin", playersJson.toString(), BodyHandlers.ofByteArray());
+				byte[] response = GrayOnlineMang.sendApiPost("online/inlistbin", playersJson.toString(), BodyHandlers.ofByteArray());
 
 				if (response != null) {
 					boolean[] binary = toBinaryArray(response);
@@ -95,13 +95,13 @@ public class BleachPlayerManager {
 	public void startPinger() {
 		if (pingExecutor == null || pingExecutor.isShutdown()) {
 			pingExecutor = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryBuilder().setDaemon(true).build());
-			pingExecutor.scheduleAtFixedRate(() -> BleachOnlineMang.sendApiGet("online/ping?uuid=" + toProperUUID(mc.getSession().getUuid()), BodyHandlers.discarding()), 0L, 14L, TimeUnit.MINUTES);
+			pingExecutor.scheduleAtFixedRate(() -> GrayOnlineMang.sendApiGet("online/ping?uuid=" + toProperUUID(mc.getSession().getUuid()), BodyHandlers.discarding()), 0L, 14L, TimeUnit.MINUTES);
 		}
 	}
 
 	public void stopPinger() {
 		if (pingExecutor != null && !pingExecutor.isShutdown()) {
-			pingExecutor.execute(() -> BleachOnlineMang.sendApiGet("online/disconnect?uuid=" + toProperUUID(mc.getSession().getUuid().replace("-", "")), BodyHandlers.discarding()));
+			pingExecutor.execute(() -> GrayOnlineMang.sendApiGet("online/disconnect?uuid=" + toProperUUID(mc.getSession().getUuid().replace("-", "")), BodyHandlers.discarding()));
 			pingExecutor.shutdown();
 		}
 	}

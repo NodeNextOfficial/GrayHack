@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import net.minecraft.block.LadderBlock;
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
@@ -15,22 +15,22 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
-import org.bleachhack.event.events.EventClientMove;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingColor;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.color.QuadColor;
+import org.grayhack.event.events.EventClientMove;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingColor;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.color.QuadColor;
 
 import java.util.Comparator;
 
 // credit: https://github.com/Wurst-Imperium/Wurst7/blob/21w11a/src/main/java/net/wurstclient/hacks/ParkourHack.java
 // modified by https://github.com/lasnikprogram
-// modified by https://github.com/BleachDrinker420
+// modified by https://github.com/GrayDrinker420
 
 public class AutoParkour extends Module {
 
@@ -52,7 +52,7 @@ public class AutoParkour extends Module {
 		super.onDisable(inWorld);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (smartPos != null) {
 			if (mc.player.getY() - 0.5 < smartPos.getY() && mc.player.getVelocity().y < 0) {
@@ -95,7 +95,7 @@ public class AutoParkour extends Module {
 		}
 	}
 	
-	@BleachSubscribe
+	@GraySubscribe
 	public void onWorldRender(EventWorldRender.Post event) {
 		if (smartPos != null && getSetting(1).asToggle().getChild(1).asToggle().getState()) {
 			int[] rgb = getSetting(1).asToggle().getChild(1).asToggle().getChild(0).asColor().getRGBArray();
@@ -103,7 +103,7 @@ public class AutoParkour extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onClientMove(EventClientMove event) {
 		if (smartPos != null && getSetting(1).asToggle().getState()) {
 			if (!getSetting(1).asToggle().getChild(0).asToggle().getState()

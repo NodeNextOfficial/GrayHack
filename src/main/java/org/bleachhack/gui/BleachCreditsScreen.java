@@ -1,25 +1,25 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.gui;
+package org.grayhack.gui;
 
 import java.net.http.HttpResponse.BodyHandlers;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.bleachhack.BleachHack;
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.gui.window.WindowScreen;
-import org.bleachhack.gui.window.widget.WindowScrollbarWidget;
-import org.bleachhack.gui.window.widget.WindowTextWidget;
-import org.bleachhack.gui.window.widget.WindowWidget;
-import org.bleachhack.util.collections.ImmutablePairList;
-import org.bleachhack.util.io.BleachJsonHelper;
-import org.bleachhack.util.io.BleachOnlineMang;
+import org.grayhack.GrayHack;
+import org.grayhack.gui.window.Window;
+import org.grayhack.gui.window.WindowScreen;
+import org.grayhack.gui.window.widget.WindowScrollbarWidget;
+import org.grayhack.gui.window.widget.WindowTextWidget;
+import org.grayhack.gui.window.widget.WindowWidget;
+import org.grayhack.util.collections.ImmutablePairList;
+import org.grayhack.util.io.GrayJsonHelper;
+import org.grayhack.util.io.GrayOnlineMang;
 
 import com.google.gson.JsonObject;
 
@@ -30,7 +30,7 @@ import net.minecraft.text.HoverEvent;
 
 import net.minecraft.text.Text;
 
-public class BleachCreditsScreen extends WindowScreen {
+public class GrayCreditsScreen extends WindowScreen {
 
 	// <If Donator, Name/Discord tag>
 	private static ImmutablePairList<Boolean, String> boosterList;
@@ -39,9 +39,9 @@ public class BleachCreditsScreen extends WindowScreen {
 	private WindowScrollbarWidget scrollbar;
 
 	static {
-		BleachOnlineMang.getResourceAsync("credits.json", BodyHandlers.ofString()).thenAccept(st -> {
+		GrayOnlineMang.getResourceAsync("credits.json", BodyHandlers.ofString()).thenAccept(st -> {
 			boosterList = new ImmutablePairList<>();
-			JsonObject json = BleachJsonHelper.parseOrNull(st, JsonObject.class);
+			JsonObject json = GrayJsonHelper.parseOrNull(st, JsonObject.class);
 
 			if (json != null) {
 				if (json.has("donators") && json.get("donators").isJsonArray()) {
@@ -55,8 +55,8 @@ public class BleachCreditsScreen extends WindowScreen {
 		});
 	}
 
-	public BleachCreditsScreen() {
-		super(Text.literal("BleachHack Credits"));
+	public GrayCreditsScreen() {
+		super(Text.literal("GrayHack Credits"));
 	}
 
 	public void init() {
@@ -70,12 +70,12 @@ public class BleachCreditsScreen extends WindowScreen {
 		int w = getWindow(0).x2 - getWindow(0).x1;
 		int h = getWindow(0).y2 - getWindow(0).y1;
 
-		getWindow(0).addWidget(new WindowTextWidget(BleachHack.watermark.getText(), true, WindowTextWidget.TextAlign.MIDDLE, 3f, w / 2, 22, 0xb0b0b0));
-		getWindow(0).addWidget(new WindowTextWidget(BleachHack.VERSION, true, WindowTextWidget.TextAlign.MIDDLE, 1.5f, w / 2, 41, 0xffc050));
+		getWindow(0).addWidget(new WindowTextWidget(GrayHack.watermark.getText(), true, WindowTextWidget.TextAlign.MIDDLE, 3f, w / 2, 22, 0xb0b0b0));
+		getWindow(0).addWidget(new WindowTextWidget(GrayHack.VERSION, true, WindowTextWidget.TextAlign.MIDDLE, 1.5f, w / 2, 41, 0xffc050));
 
 		getWindow(0).addWidget(new WindowTextWidget("- Main Developer -", true, WindowTextWidget.TextAlign.MIDDLE, w / 2, 65, 0xe0e0e0));
 		getWindow(0).addWidget(new WindowTextWidget(
-				Text.literal("Bleach").styled(s -> s.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("\u00a77https://github.com/BleachDrinker420\n\n\u00a7eMain Developer!")))),
+				Text.literal("Gray").styled(s -> s.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("\u00a77https://github.com/GrayDrinker420\n\n\u00a7eMain Developer!")))),
 				true, WindowTextWidget.TextAlign.MIDDLE, w / 2, 80, 0x51eff5));
 
 		getWindow(0).addWidget(new WindowTextWidget("- Contributors -", true, WindowTextWidget.TextAlign.MIDDLE, w / 2, 100, 0xe0e0e0));

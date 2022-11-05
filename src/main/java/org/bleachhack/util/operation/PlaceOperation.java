@@ -1,19 +1,19 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.util.operation;
+package org.grayhack.util.operation;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.bleachhack.util.InventoryUtils;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.WorldRenderer;
-import org.bleachhack.util.render.color.QuadColor;
-import org.bleachhack.util.world.WorldUtils;
+import org.grayhack.util.InventoryUtils;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.WorldRenderer;
+import org.grayhack.util.render.color.QuadColor;
+import org.grayhack.util.world.WorldUtils;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.RenderLayers;

@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.gui;
+package org.grayhack.gui;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -23,11 +23,11 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.Direction.Axis;
 import net.minecraft.util.math.MathHelper;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.module.mods.EntityMenu;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.Boxes;
-import org.bleachhack.util.collections.MutablePairList;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.module.mods.EntityMenu;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.Boxes;
+import org.grayhack.util.collections.MutablePairList;
 import org.lwjgl.glfw.GLFW;
 
 import java.net.URI;
@@ -94,7 +94,7 @@ public class EntityMenuScreen extends Screen {
 				try {
 					Util.getOperatingSystem().open(new URI(message.substring(5)));
 				} catch (Exception e) {
-					BleachLogger.error("Invalid url \"" + message.substring(5) + "\"");
+					GrayLogger.error("Invalid url \"" + message.substring(5) + "\"");
 				}
 
 				client.setScreen(null);

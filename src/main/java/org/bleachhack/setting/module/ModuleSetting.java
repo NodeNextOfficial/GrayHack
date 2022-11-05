@@ -1,20 +1,20 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.setting.module;
+package org.grayhack.setting.module;
 
 import java.util.function.UnaryOperator;
 
-import org.bleachhack.gui.clickgui.window.ClickGuiWindow.Tooltip;
-import org.bleachhack.setting.Setting;
-import org.bleachhack.setting.SettingDataHandler;
-import org.bleachhack.gui.clickgui.window.ModuleWindow;
-import org.bleachhack.util.io.BleachFileHelper;
+import org.grayhack.gui.clickgui.window.ClickGuiWindow.Tooltip;
+import org.grayhack.setting.Setting;
+import org.grayhack.setting.SettingDataHandler;
+import org.grayhack.gui.clickgui.window.ModuleWindow;
+import org.grayhack.util.io.GrayFileHelper;
 
 import net.minecraft.client.util.math.MatrixStack;
 
@@ -100,7 +100,7 @@ public abstract class ModuleSetting<T> extends Setting<T> {
 	@Override
 	public void setValue(T value) {
 		super.setValue(value);
-		BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
+		GrayFileHelper.SCHEDULE_SAVE_MODULES.set(true);
 	}
 
 	public abstract void render(ModuleWindow window, MatrixStack matrices, int x, int y, int len);

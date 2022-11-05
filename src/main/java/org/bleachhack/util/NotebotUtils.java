@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.util;
+package org.grayhack.util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,10 +29,10 @@ import javax.sound.midi.Track;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.bleachhack.module.mods.Notebot.Note;
-import org.bleachhack.module.mods.Notebot.Song;
-import org.bleachhack.util.io.BleachFileMang;
-import org.bleachhack.util.io.BleachOnlineMang;
+import org.grayhack.module.mods.Notebot.Note;
+import org.grayhack.module.mods.Notebot.Song;
+import org.grayhack.util.io.GrayFileMang;
+import org.grayhack.util.io.GrayOnlineMang;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
 
@@ -74,15 +74,15 @@ public class NotebotUtils {
 	public static void downloadSongs(boolean log) {
 		try {
 			FileUtils.copyURLToFile(
-					BleachOnlineMang.getResourceUrl().resolve("notebot/songs.zip").toURL(),
-					BleachFileMang.getDir().resolve("notebot/songs.zip").toFile());
-			ZipFile zip = new ZipFile(BleachFileMang.getDir().resolve("notebot/songs.zip").toFile());
+					GrayOnlineMang.getResourceUrl().resolve("notebot/songs.zip").toURL(),
+					GrayFileMang.getDir().resolve("notebot/songs.zip").toFile());
+			ZipFile zip = new ZipFile(GrayFileMang.getDir().resolve("notebot/songs.zip").toFile());
 			Enumeration<? extends ZipEntry> files = zip.entries();
 			int count = 0;
 			while (files.hasMoreElements()) {
 				count++;
 				ZipEntry file = files.nextElement();
-				Path outFile = BleachFileMang.getDir().resolve("notebot").resolve(file.getName());
+				Path outFile = GrayFileMang.getDir().resolve("notebot").resolve(file.getName());
 				if (file.isDirectory()) {
 					outFile.toFile().mkdirs();
 				} else {
@@ -95,13 +95,13 @@ public class NotebotUtils {
 			}
 
 			zip.close();
-			Files.deleteIfExists(BleachFileMang.getDir().resolve("notebot").resolve("songs.zip"));
+			Files.deleteIfExists(GrayFileMang.getDir().resolve("notebot").resolve("songs.zip"));
 
 			if (log)
-				BleachLogger.info("Downloaded " + count + " Songs");
+				GrayLogger.info("Downloaded " + count + " Songs");
 		} catch (Exception e) {
 			if (log)
-				BleachLogger.warn("Error Downloading Songs... " + e);
+				GrayLogger.warn("Error Downloading Songs... " + e);
 			e.printStackTrace();
 		}
 	}
@@ -145,12 +145,12 @@ public class NotebotUtils {
 						String[] split = s.split(":");
 						notes.put(Integer.parseInt(split[0]), new Note(Integer.parseInt(split[1]), Integer.parseInt(split[2])));
 					} catch (NumberFormatException | IndexOutOfBoundsException e) {
-						BleachLogger.warn("Error trying to parse note: \u00a7o" + s);
+						GrayLogger.warn("Error trying to parse note: \u00a7o" + s);
 					}
 				}
 			}
 		} catch (IOException e) {
-			BleachLogger.error("Error reading NL file!");
+			GrayLogger.error("Error reading NL file!");
 			e.printStackTrace();
 		}
 
@@ -164,7 +164,7 @@ public class NotebotUtils {
 
 		try {
 			MidiFileFormat midiFormat = MidiSystem.getMidiFileFormat(path.toFile());
-			BleachLogger.info(midiFormat.properties().toString());
+			GrayLogger.info(midiFormat.properties().toString());
 
 			Sequence seq = MidiSystem.getSequence(path.toFile());
 
@@ -240,7 +240,7 @@ public class NotebotUtils {
 					}
 
 					if (time < 10000)
-						BleachLogger.logger.info(out);
+						GrayLogger.logger.info(out);
 				}
 
 				trackCount++;
@@ -313,10 +313,10 @@ public class NotebotUtils {
 
 					int key = input.read() - 33;
 					if (key < 0) {
-						BleachLogger.info("Note @" + tick + " Key: " + key + " is below the 2-octave range!");
+						GrayLogger.info("Note @" + tick + " Key: " + key + " is below the 2-octave range!");
 						key = Math.floorMod(key, 12);
 					} else if (key > 25) {
-						BleachLogger.info("Note @" + tick + " Key: " + key + " is above the 2-octave range!");
+						GrayLogger.info("Note @" + tick + " Key: " + key + " is above the 2-octave range!");
 						key = Math.floorMod(key, 12) + 12;
 					}
 
@@ -327,7 +327,7 @@ public class NotebotUtils {
 				}
 			}
 		} catch (IOException e) {
-			BleachLogger.error("Error reading Nbs file!");
+			GrayLogger.error("Error reading Nbs file!");
 			e.printStackTrace();
 		}
 

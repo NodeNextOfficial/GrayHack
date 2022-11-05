@@ -1,4 +1,4 @@
-package org.bleachhack.gui.window.widget;
+package org.grayhack.gui.window.widget;
 
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.widget.TextFieldWidget;

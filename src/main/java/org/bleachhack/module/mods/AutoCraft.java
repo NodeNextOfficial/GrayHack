@@ -1,15 +1,15 @@
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import java.util.List;
 
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingItemList;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingItemList;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.GrayLogger;
 
 import net.minecraft.client.gui.screen.recipebook.RecipeResultCollection;
 import net.minecraft.item.Item;
@@ -37,17 +37,17 @@ public class AutoCraft extends Module {
 
 		crafted = 0;
 		if (getSetting(0).asList(Item.class).getValue().isEmpty()) {
-			BleachLogger.error("AutoCraft items are empty.");
+			GrayLogger.error("AutoCraft items are empty.");
 			setEnabled(false);
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		SettingToggle maxItems = getSetting(3).asToggle();
 		if (maxItems.getState() && crafted >= maxItems.getChild(0).asSlider().getValueInt()) {
 			if (maxItems.getChild(1).asToggle().getState())
-				BleachLogger.info("Disabled AutoCraft after crafting " + crafted + " items.");
+				GrayLogger.info("Disabled AutoCraft after crafting " + crafted + " items.");
 
 			setEnabled(false);
 			return;

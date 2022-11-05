@@ -1,6 +1,6 @@
-package org.bleachhack.gui.window.widget;
+package org.grayhack.gui.window.widget;
 
-import org.bleachhack.mixin.AccessorScreen;
+import org.grayhack.mixin.AccessorScreen;
 
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexConsumerProvider;

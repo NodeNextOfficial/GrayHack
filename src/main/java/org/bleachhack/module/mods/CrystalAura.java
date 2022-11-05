@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import com.google.common.collect.Streams;
 import net.minecraft.block.BlockState;
@@ -21,21 +21,21 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingColor;
-import org.bleachhack.setting.module.SettingRotate;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.InventoryUtils;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.color.QuadColor;
-import org.bleachhack.util.world.DamageUtils;
-import org.bleachhack.util.world.EntityUtils;
-import org.bleachhack.util.world.WorldUtils;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingColor;
+import org.grayhack.setting.module.SettingRotate;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.InventoryUtils;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.color.QuadColor;
+import org.grayhack.util.world.DamageUtils;
+import org.grayhack.util.world.EntityUtils;
+import org.grayhack.util.world.WorldUtils;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -76,7 +76,7 @@ public class CrystalAura extends Module {
 				new SettingSlider("Range", 0, 6, 4.5, 2).withDesc("Range to place and attack crystals."));
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		breakCooldown = Math.max(0, breakCooldown - 1);
 		placeCooldown = Math.max(0, placeCooldown - 1);
@@ -257,7 +257,7 @@ public class CrystalAura extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRenderWorld(EventWorldRender.Post event) {
 		if (this.render != null) {
 			int[] col = getSetting(4).asToggle().getChild(8).asColor().getRGBArray();

@@ -1,18 +1,18 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.command.commands;
+package org.grayhack.command.commands;
 
-import org.bleachhack.command.Command;
-import org.bleachhack.command.CommandCategory;
-import org.bleachhack.command.exception.CmdSyntaxException;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.BleachQueue;
+import org.grayhack.command.Command;
+import org.grayhack.command.CommandCategory;
+import org.grayhack.command.exception.CmdSyntaxException;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.GrayQueue;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -36,8 +36,8 @@ public class CmdInvPeek extends Command {
 
 		for (AbstractClientPlayerEntity e: mc.world.getPlayers()) {
 			if (e.getDisplayName().getString().equalsIgnoreCase(args[0])) {
-				BleachQueue.add(() -> {
-					BleachLogger.info("Opened inventory for " + e.getDisplayName().getString());
+				GrayQueue.add(() -> {
+					GrayLogger.info("Opened inventory for " + e.getDisplayName().getString());
 
 					mc.setScreen(new InventoryScreen(e) {
 						public boolean mouseClicked(double mouseX, double mouseY, int button) {
@@ -58,7 +58,7 @@ public class CmdInvPeek extends Command {
 			}
 		}
 
-		BleachLogger.error("Player " + args[0] + " not found!");
+		GrayLogger.error("Player " + args[0] + " not found!");
 	}
 
 }

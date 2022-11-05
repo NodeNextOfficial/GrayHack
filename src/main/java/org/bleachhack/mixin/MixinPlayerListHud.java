@@ -1,7 +1,7 @@
-package org.bleachhack.mixin;
+package org.grayhack.mixin;
 
-import org.bleachhack.BleachHack;
-import org.bleachhack.setting.option.Option;
+import org.grayhack.GrayHack;
+import org.grayhack.setting.option.Option;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,18 +24,18 @@ public class MixinPlayerListHud {
 
 	@Inject(method = "getPlayerName", at = @At("RETURN"), cancellable = true)
 	private void getPlayerName(PlayerListEntry entry, CallbackInfoReturnable<Text> callback) {
-		if (Option.PLAYERLIST_SHOW_FRIENDS.getValue() && BleachHack.friendMang.has(entry.getProfile().getName())) {
+		if (Option.PLAYERLIST_SHOW_FRIENDS.getValue() && GrayHack.friendMang.has(entry.getProfile().getName())) {
 			callback.setReturnValue(((MutableText) callback.getReturnValue()).styled(s -> s.withColor(Formatting.AQUA)));
 		}
 	}
 
 	@Inject(method = "renderLatencyIcon", at = @At("RETURN"))
 	private void renderLatencyIcon(MatrixStack matrices, int width, int x, int y, PlayerListEntry entry, CallbackInfo callback) {
-		if (Option.PLAYERLIST_SHOW_BH_USERS.getValue() && BleachHack.playerMang.getPlayers().contains(entry.getProfile().getId())) {
+		if (Option.PLAYERLIST_SHOW_BH_USERS.getValue() && GrayHack.playerMang.getPlayers().contains(entry.getProfile().getId())) {
 			matrices.push();
 			matrices.translate(x + width - 21, y + 1.5, 0);
 			matrices.scale(0.67f, 0.7f, 1f);
-			client.textRenderer.drawWithShadow(matrices, BleachHack.watermark.getShortText(), 0, 0, -1);
+			client.textRenderer.drawWithShadow(matrices, GrayHack.watermark.getShortText(), 0, 0, -1);
 			matrices.pop();
 		}
 	}

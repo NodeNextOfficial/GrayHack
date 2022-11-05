@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.command.commands;
+package org.grayhack.command.commands;
 
 import net.minecraft.SharedConstants;
 import net.minecraft.client.network.PlayerListEntry;
@@ -18,13 +18,13 @@ import net.minecraft.text.HoverEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.apache.commons.lang3.StringUtils;
-import org.bleachhack.BleachHack;
-import org.bleachhack.command.Command;
-import org.bleachhack.command.CommandCategory;
-import org.bleachhack.command.exception.CmdSyntaxException;
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.GrayHack;
+import org.grayhack.command.Command;
+import org.grayhack.command.CommandCategory;
+import org.grayhack.command.exception.CmdSyntaxException;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.util.GrayLogger;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -43,55 +43,55 @@ public class CmdServer extends Command {
 		boolean sp = mc.isIntegratedServerRunning();
 
 		if (!sp && mc.getCurrentServerEntry() == null) {
-			BleachLogger.error("Unable to get server info.");
+			GrayLogger.error("Unable to get server info.");
 			return;
 		}
 
-		BleachLogger.info("Server Info");
+		GrayLogger.info("Server Info");
 
 		if (args.length == 0) {
-			BleachLogger.noPrefix(createText("Address", getAddress(sp)));
-			BleachLogger.noPrefix(createText("Brand", getBrand(sp)));
-			BleachLogger.noPrefix(createText("Day", getDay(sp)));
-			BleachLogger.noPrefix(createText("Difficulty", getDifficulty(sp)));
-			BleachLogger.noPrefix(createText("IP", getIP(sp)));
-			BleachLogger.noPrefix(createText("Motd", getMotd(sp)));
-			BleachLogger.noPrefix(createText("Ping", getPing(sp)));
-			BleachLogger.noPrefix(createText("Permission Level", getPerms(sp)));
-			BleachLogger.noPrefix(createText("Protocol", getProtocol(sp)));
-			BleachLogger.noPrefix(createText("Version", getVersion(sp)));
+			GrayLogger.noPrefix(createText("Address", getAddress(sp)));
+			GrayLogger.noPrefix(createText("Brand", getBrand(sp)));
+			GrayLogger.noPrefix(createText("Day", getDay(sp)));
+			GrayLogger.noPrefix(createText("Difficulty", getDifficulty(sp)));
+			GrayLogger.noPrefix(createText("IP", getIP(sp)));
+			GrayLogger.noPrefix(createText("Motd", getMotd(sp)));
+			GrayLogger.noPrefix(createText("Ping", getPing(sp)));
+			GrayLogger.noPrefix(createText("Permission Level", getPerms(sp)));
+			GrayLogger.noPrefix(createText("Protocol", getProtocol(sp)));
+			GrayLogger.noPrefix(createText("Version", getVersion(sp)));
 			checkForPlugins();
 		} else if (args[0].equalsIgnoreCase("address")) {
-			BleachLogger.noPrefix(createText("Address", getAddress(sp)));
+			GrayLogger.noPrefix(createText("Address", getAddress(sp)));
 		} else if (args[0].equalsIgnoreCase("brand")) {
-			BleachLogger.noPrefix(createText("Brand", getBrand(sp)));
+			GrayLogger.noPrefix(createText("Brand", getBrand(sp)));
 		} else if (args[0].equalsIgnoreCase("day")) {
-			BleachLogger.noPrefix(createText("Day", getDay(sp)));
+			GrayLogger.noPrefix(createText("Day", getDay(sp)));
 		} else if (args[0].equalsIgnoreCase("difficulty")) {
-			BleachLogger.noPrefix(createText("Difficulty", getDifficulty(sp)));
+			GrayLogger.noPrefix(createText("Difficulty", getDifficulty(sp)));
 		} else if (args[0].equalsIgnoreCase("ip")) {
-			BleachLogger.noPrefix(createText("IP", getIP(sp)));
+			GrayLogger.noPrefix(createText("IP", getIP(sp)));
 		} else if (args[0].equalsIgnoreCase("motd")) {
-			BleachLogger.noPrefix(createText("Motd", getMotd(sp)));
+			GrayLogger.noPrefix(createText("Motd", getMotd(sp)));
 		} else if (args[0].equalsIgnoreCase("ping")) {
-			BleachLogger.noPrefix(createText("Ping", getPing(sp)));
+			GrayLogger.noPrefix(createText("Ping", getPing(sp)));
 		} else if (args[0].equalsIgnoreCase("permissions")) {
-			BleachLogger.noPrefix(createText("Permission Level", getPerms(sp)));
+			GrayLogger.noPrefix(createText("Permission Level", getPerms(sp)));
 		} else if (args[0].equalsIgnoreCase("plugins")) {
 			checkForPlugins();
 		} else if (args[0].equalsIgnoreCase("protocol")) {
-			BleachLogger.noPrefix(createText("Protocol", getProtocol(sp)));
+			GrayLogger.noPrefix(createText("Protocol", getProtocol(sp)));
 		} else if (args[0].equalsIgnoreCase("version")) {
-			BleachLogger.noPrefix(createText("Version", getVersion(sp)));
+			GrayLogger.noPrefix(createText("Version", getVersion(sp)));
 		} else {
 			throw new CmdSyntaxException("Invalid server bruh.");
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onReadPacket(EventPacket.Read event) {
 		if (event.getPacket() instanceof CommandSuggestionsS2CPacket) {
-			BleachHack.eventBus.unsubscribe(this);
+			GrayHack.eventBus.unsubscribe(this);
 
 			CommandSuggestionsS2CPacket packet = (CommandSuggestionsS2CPacket) event.getPacket();
 			List<String> plugins = packet.getSuggestions().getList().stream()
@@ -105,9 +105,9 @@ public class CmdServer extends Command {
 					.collect(Collectors.toList());
 
 			if (!plugins.isEmpty()) {
-				BleachLogger.noPrefix(createText("Plugins \u00a7f(" + plugins.size() + ")", "\u00a7a" + String.join("\u00a7f, \u00a7a", plugins)));
+				GrayLogger.noPrefix(createText("Plugins \u00a7f(" + plugins.size() + ")", "\u00a7a" + String.join("\u00a7f, \u00a7a", plugins)));
 			} else {
-				BleachLogger.noPrefix("\u00a7cNo plugins found");
+				GrayLogger.noPrefix("\u00a7cNo plugins found");
 			}
 		}
 	}
@@ -120,14 +120,14 @@ public class CmdServer extends Command {
 	}
 
 	public void checkForPlugins() {
-		BleachHack.eventBus.subscribe(this); // Plugins
+		GrayHack.eventBus.subscribe(this); // Plugins
 		mc.player.networkHandler.sendPacket(new RequestCommandCompletionsC2SPacket(0, "/"));
 
 		Thread timeoutThread = new Thread(() -> {
 			try {
 				Thread.sleep(5000);
-				if (BleachHack.eventBus.unsubscribe(this))
-					BleachLogger.noPrefix("\u00a7cPlugin check timed out");
+				if (GrayHack.eventBus.unsubscribe(this))
+					GrayLogger.noPrefix("\u00a7cPlugin check timed out");
 			} catch (InterruptedException ignored) {
 			}
 		});

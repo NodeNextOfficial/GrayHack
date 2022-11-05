@@ -1,18 +1,18 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.mixin;
+package org.grayhack.mixin;
 
 import java.util.List;
 
-import org.bleachhack.BleachHack;
-import org.bleachhack.event.events.EventRenderScreenBackground;
-import org.bleachhack.event.events.EventRenderTooltip;
+import org.grayhack.GrayHack;
+import org.grayhack.event.events.EventRenderScreenBackground;
+import org.grayhack.event.events.EventRenderTooltip;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -48,7 +48,7 @@ public class MixinScreen {
 		}
 
 		EventRenderTooltip event = new EventRenderTooltip((Screen) (Object) this, matrices, components, x, y, lastMX, lastMY);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		callback.cancel();
 		if (event.isCancelled()) {
@@ -62,7 +62,7 @@ public class MixinScreen {
 	@Inject(method = "renderBackground(Lnet/minecraft/client/util/math/MatrixStack;I)V", at = @At("HEAD"), cancellable = true)
 	private void renderBackground(MatrixStack matrices, int vOffset, CallbackInfo callback) {
 		EventRenderScreenBackground event = new EventRenderScreenBackground(matrices, vOffset);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		if (event.isCancelled()) {
 			callback.cancel();

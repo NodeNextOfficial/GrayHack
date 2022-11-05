@@ -1,9 +1,9 @@
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
 
 import net.minecraft.network.packet.c2s.play.CloseHandledScreenC2SPacket;
 
@@ -13,7 +13,7 @@ public class SecretClose extends Module {
 		super("SecretClose", KEY_UNBOUND, ModuleCategory.EXPLOITS, "Makes the server think you're still in a container after closing it.");
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onSendPacket(EventPacket.Send event) {
 		if (event.getPacket() instanceof CloseHandledScreenC2SPacket) {
 			event.setCancelled(true);

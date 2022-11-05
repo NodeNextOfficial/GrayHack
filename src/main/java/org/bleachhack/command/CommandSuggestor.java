@@ -1,16 +1,16 @@
-package org.bleachhack.command;
+package org.grayhack.command;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import org.bleachhack.BleachHack;
-import org.bleachhack.event.events.EventKeyPress;
-import org.bleachhack.event.events.EventOpenScreen;
-import org.bleachhack.event.events.EventRenderInGameHud;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.mixin.AccessorChatScreen;
-import org.bleachhack.setting.option.Option;
+import org.grayhack.GrayHack;
+import org.grayhack.event.events.EventKeyPress;
+import org.grayhack.event.events.EventOpenScreen;
+import org.grayhack.event.events.EventRenderInGameHud;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.mixin.AccessorChatScreen;
+import org.grayhack.setting.option.Option;
 import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.client.MinecraftClient;
@@ -37,15 +37,15 @@ public class CommandSuggestor {
 	}
 
 	public static void start() {
-		BleachHack.eventBus.subscribe(getInstance());
+		GrayHack.eventBus.subscribe(getInstance());
 	}
 
 	public static void stop() {
 		getInstance().reset();
-		BleachHack.eventBus.unsubscribe(getInstance());
+		GrayHack.eventBus.unsubscribe(getInstance());
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onDrawOverlay(EventRenderInGameHud event) {
 		if (!Option.CHAT_SHOW_SUGGESTIONS.getValue())
 			return;
@@ -105,7 +105,7 @@ public class CommandSuggestor {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onKeyPressGlobal(EventKeyPress.Global event) {
 		if (event.getAction() != 0 && !suggestions.isEmpty() && !curText.isEmpty()) {
 			if (event.getKey() == GLFW.GLFW_KEY_DOWN) {
@@ -128,7 +128,7 @@ public class CommandSuggestor {
 		}
 	}
 	
-	@BleachSubscribe
+	@GraySubscribe
 	public void onKeyPressChat(EventKeyPress.InChat event) {
 		TextFieldWidget field = ((AccessorChatScreen) MinecraftClient.getInstance().currentScreen).getChatField();
 		if (field.getText().startsWith(Command.getPrefix())
@@ -145,7 +145,7 @@ public class CommandSuggestor {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onOpenScreen(EventOpenScreen event) {
 		if (MinecraftClient.getInstance().currentScreen instanceof ChatScreen) {
 			reset();

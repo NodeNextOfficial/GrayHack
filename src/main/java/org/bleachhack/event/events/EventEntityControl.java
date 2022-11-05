@@ -1,6 +1,6 @@
-package org.bleachhack.event.events;
+package org.grayhack.event.events;
 
-import org.bleachhack.event.Event;
+import org.grayhack.event.Event;
 
 public class EventEntityControl extends Event {
 	

@@ -1,24 +1,24 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.command.commands;
+package org.grayhack.command.commands;
 
 import org.apache.commons.lang3.math.NumberUtils;
-import org.bleachhack.command.Command;
-import org.bleachhack.command.CommandCategory;
-import org.bleachhack.command.exception.CmdSyntaxException;
-import org.bleachhack.gui.clickgui.ModuleClickGuiScreen;
-import org.bleachhack.gui.clickgui.window.ClickGuiWindow;
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.module.mods.ClickGui;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.io.BleachFileHelper;
+import org.grayhack.command.Command;
+import org.grayhack.command.CommandCategory;
+import org.grayhack.command.exception.CmdSyntaxException;
+import org.grayhack.gui.clickgui.ModuleClickGuiScreen;
+import org.grayhack.gui.clickgui.window.ClickGuiWindow;
+import org.grayhack.gui.window.Window;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.module.mods.ClickGui;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.io.GrayFileHelper;
 
 public class CmdClickGui extends Command {
 
@@ -59,17 +59,17 @@ public class CmdClickGui extends Command {
 				throw new CmdSyntaxException("Invalid reset mode!");
 			}
 
-			BleachFileHelper.SCHEDULE_SAVE_CLICKGUI.set(true);
-			BleachLogger.info("Reset the clickgui!");
+			GrayFileHelper.SCHEDULE_SAVE_CLICKGUI.set(true);
+			GrayLogger.info("Reset the clickgui!");
 		} else if (args[0].equalsIgnoreCase("length")) {
 			if (!NumberUtils.isCreatable(args[1])) {
 				throw new CmdSyntaxException("Invalid clickgui length: " + args[1]);
 			}
 
 			ModuleManager.getModule(ClickGui.class).getSetting(0).asSlider().setValue(NumberUtils.createNumber(args[1]).doubleValue());
-			BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
+			GrayFileHelper.SCHEDULE_SAVE_MODULES.set(true);
 
-			BleachLogger.info("Set the clickgui length to: " + args[1]);
+			GrayLogger.info("Set the clickgui length to: " + args[1]);
 		} else {
 			throw new CmdSyntaxException();
 		}

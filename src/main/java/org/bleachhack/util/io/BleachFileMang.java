@@ -1,15 +1,15 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.util.io;
+package org.grayhack.util.io;
 
 import net.minecraft.client.MinecraftClient;
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.util.GrayLogger;
 
 import java.io.FileWriter;
 import java.nio.file.Files;
@@ -19,18 +19,18 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BleachFileMang {
+public class GrayFileMang {
 
 	private static Path dir;
 
 	public static void init() {
-		dir = Paths.get(MinecraftClient.getInstance().runDirectory.getPath(), "bleach/");
+		dir = Paths.get(MinecraftClient.getInstance().runDirectory.getPath(), "gray/");
 		if (!dir.toFile().exists()) {
 			dir.toFile().mkdirs();
 		}
 	}
 
-	/** Gets the bleach directory in your minecraft folder. **/
+	/** Gets the gray directory in your minecraft folder. **/
 	public static Path getDir() {
 		return dir;
 	}
@@ -42,7 +42,7 @@ public class BleachFileMang {
 		} catch (NoSuchFileException ignored) {
 
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Reading File: " + path, e);
+			GrayLogger.logger.error("Error Reading File: " + path, e);
 		}
 
 		return "";
@@ -55,7 +55,7 @@ public class BleachFileMang {
 		} catch (NoSuchFileException ignored) {
 
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Reading File: " + path, e);
+			GrayLogger.logger.error("Error Reading File: " + path, e);
 		}
 
 		return new ArrayList<>();
@@ -69,7 +69,7 @@ public class BleachFileMang {
 				Files.createFile(getDir().resolve(path));
 			}
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Creating File: " + path, e);
+			GrayLogger.logger.error("Error Creating File: " + path, e);
 		}
 	}
 
@@ -82,7 +82,7 @@ public class BleachFileMang {
 			writer.write("");
 			writer.close();
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Clearing/Creating File: " + path, e);
+			GrayLogger.logger.error("Error Clearing/Creating File: " + path, e);
 		}
 	}
 
@@ -97,7 +97,7 @@ public class BleachFileMang {
 					+ (content.endsWith("\n") ? "" : "\n"));
 			writer.close();
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Appending File: " + path, e);
+			GrayLogger.logger.error("Error Appending File: " + path, e);
 		}
 	}
 
@@ -115,7 +115,7 @@ public class BleachFileMang {
 		try {
 			Files.deleteIfExists(getDir().resolve(path));
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Deleting File: " + path, e);
+			GrayLogger.logger.error("Error Deleting File: " + path, e);
 		}
 	}
 }

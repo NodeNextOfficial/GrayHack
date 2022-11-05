@@ -11,7 +11,7 @@ version = project.mod_version
 group = project.maven_group
 
 loom {
-	accessWidenerPath = file("src/main/resources/bleachhack.accesswidener")
+	accessWidenerPath = file("src/main/resources/grayhack.accesswidener")
 }
 
 repositories {
@@ -33,7 +33,7 @@ dependencies {
 
 	include(modImplementation("com.github.fzakaria:ascii85:1.2"))
 
-	// include(modImplementation("com.github.BleachDrinker420:DiscordIPC:9957fc8114")) {
+	// include(modImplementation("com.github.GrayDrinker420:DiscordIPC:9957fc8114")) {
     //    exclude group: 'com.google.code.gson', module: 'gson'
 	// }
 	// include(modImplementation("com.kohlschutter.junixsocket:junixsocket-common:2.2.1"))

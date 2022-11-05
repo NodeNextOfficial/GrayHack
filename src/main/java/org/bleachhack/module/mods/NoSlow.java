@@ -1,22 +1,22 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventClientMove;
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.world.WorldUtils;
+import org.grayhack.event.events.EventClientMove;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.world.WorldUtils;
 import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.block.Blocks;
@@ -60,7 +60,7 @@ public class NoSlow extends Module {
 								new SettingToggle("Anti-Spinbot", true).withDesc("Adds a random amount of rotation when spinning to prevent spinbot detects."))));
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onClientMove(EventClientMove event) {
 		if (!isEnabled())
 			return;
@@ -107,7 +107,7 @@ public class NoSlow extends Module {
 		// Items handled in MixinPlayerEntity:sendMovementPackets_isUsingItem
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		/* Inventory */
 		if (getSetting(6).asToggle().getState() && shouldInvMove(mc.currentScreen)) {
@@ -128,7 +128,7 @@ public class NoSlow extends Module {
 	}
 
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRender(EventWorldRender.Post event) {
 		/* Inventory */
 		if (getSetting(6).asToggle().getState()
@@ -177,7 +177,7 @@ public class NoSlow extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onSendPacket(EventPacket.Send event) {
 		if (event.getPacket() instanceof ClickSlotC2SPacket && getSetting(6).asToggle().asToggle().getChild(1).asToggle().getState()) {
 			mc.player.networkHandler.sendPacket(new ClientCommandC2SPacket(mc.player, Mode.STOP_SPRINTING));

@@ -1,19 +1,19 @@
-package org.bleachhack.eventbus;
+package org.grayhack.eventbus;
 
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.logging.log4j.Logger;
-import org.bleachhack.event.Event;
-import org.bleachhack.eventbus.handler.EventHandler;
+import org.grayhack.event.Event;
+import org.grayhack.eventbus.handler.EventHandler;
 
-public class BleachEventBus {
+public class GrayEventBus {
 
 	private final EventHandler handler;
 	private final AtomicLong eventsPosted = new AtomicLong();
 	
 	private final Logger logger;
 
-	public BleachEventBus(EventHandler handler, Logger logger) {
+	public GrayEventBus(EventHandler handler, Logger logger) {
 		this.handler = handler;
 		this.logger = logger;
 	}

@@ -1,17 +1,17 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.mixin;
+package org.grayhack.mixin;
 
-import org.bleachhack.BleachHack;
-import org.bleachhack.event.events.EventBlockBreakCooldown;
-import org.bleachhack.event.events.EventInteract;
-import org.bleachhack.event.events.EventReach;
+import org.grayhack.GrayHack;
+import org.grayhack.event.events.EventBlockBreakCooldown;
+import org.grayhack.event.events.EventInteract;
+import org.grayhack.event.events.EventReach;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -37,7 +37,7 @@ public class MixinClientPlayerInteractionManager {
 			require = 0 /* TODO: meteor compatibility */)
 	private void updateBlockBreakingProgress(ClientPlayerInteractionManager clientPlayerInteractionManager, int newCooldown) {
 		EventBlockBreakCooldown event = new EventBlockBreakCooldown(newCooldown);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		this.blockBreakingCooldown = event.getCooldown();
 	}
@@ -46,7 +46,7 @@ public class MixinClientPlayerInteractionManager {
 			require = 0 /* TODO: meteor compatibility */)
 	private void updateBlockBreakingProgress2(ClientPlayerInteractionManager clientPlayerInteractionManager, int newCooldown) {
 		EventBlockBreakCooldown event = new EventBlockBreakCooldown(newCooldown);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		this.blockBreakingCooldown = event.getCooldown();
 	}
@@ -55,7 +55,7 @@ public class MixinClientPlayerInteractionManager {
 			require = 0 /* TODO: meteor compatibility */)
 	private void attackBlock(ClientPlayerInteractionManager clientPlayerInteractionManager, int newCooldown) {
 		EventBlockBreakCooldown event = new EventBlockBreakCooldown(newCooldown);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		this.blockBreakingCooldown = event.getCooldown();
 	}
@@ -63,7 +63,7 @@ public class MixinClientPlayerInteractionManager {
 	@Inject(method = "breakBlock", at = @At("HEAD"), cancellable = true)
 	private void breakBlock(BlockPos pos, CallbackInfoReturnable<Boolean> callback) {
 		EventInteract.BreakBlock event = new EventInteract.BreakBlock(pos);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		if (event.isCancelled()) {
 			callback.setReturnValue(false);
@@ -73,7 +73,7 @@ public class MixinClientPlayerInteractionManager {
 	@Inject(method = { "attackBlock", "updateBlockBreakingProgress" }, at = @At("HEAD"), cancellable = true)
 	private void attackBlock(BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> callback) {
 		EventInteract.AttackBlock event = new EventInteract.AttackBlock(pos, direction);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		if (event.isCancelled()) {
 			callback.setReturnValue(false);
@@ -83,7 +83,7 @@ public class MixinClientPlayerInteractionManager {
 	@Inject(method = "interactBlock", at = @At("HEAD"), cancellable = true)
 	private void interactBlock(ClientPlayerEntity player, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> callback) {
 		EventInteract.InteractBlock event = new EventInteract.InteractBlock(hand, hitResult);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		if (event.isCancelled()) {
 			callback.setReturnValue(ActionResult.PASS);
@@ -93,7 +93,7 @@ public class MixinClientPlayerInteractionManager {
 	@Inject(method = "interactItem", at = @At("HEAD"), cancellable = true)
 	private void interactItem(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> callback) {
 		EventInteract.InteractItem event = new EventInteract.InteractItem(hand);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		if (event.isCancelled()) {
 			callback.setReturnValue(ActionResult.PASS);
@@ -103,7 +103,7 @@ public class MixinClientPlayerInteractionManager {
 	@Inject(method = "getReachDistance", at = @At("RETURN"), cancellable = true)
 	private void getReachDistance(CallbackInfoReturnable<Float> callback) {
 		EventReach event = new EventReach(callback.getReturnValueF());
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		callback.setReturnValue(event.getReach());
 	}

@@ -1,14 +1,14 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.util.io;
+package org.grayhack.util.io;
 
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.util.GrayLogger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,33 +17,33 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
-public class BleachJsonHelper {
+public class GrayJsonHelper {
 
 	public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
 	public static void addJsonElement(String path, String key, JsonElement element) {
 		JsonObject json = new JsonObject();
 
-		if (BleachFileMang.fileExists(path)) {
-			String content = BleachFileMang.readFile(path);
+		if (GrayFileMang.fileExists(path)) {
+			String content = GrayFileMang.readFile(path);
 
 			if (!content.isEmpty()) {
 				try {
 					json = JsonParser.parseString(content).getAsJsonObject();
 				} catch (Exception e) {
-					BleachLogger.logger.error("Error trying to read json file \"" + path + "\", Overwriting file to add element!", e);
+					GrayLogger.logger.error("Error trying to read json file \"" + path + "\", Overwriting file to add element!", e);
 				}
 			}
 		}
 		
 		json.add(key, element);
-		BleachFileMang.createEmptyFile(path);
-		BleachFileMang.appendFile(path, GSON.toJson(json));
+		GrayFileMang.createEmptyFile(path);
+		GrayFileMang.appendFile(path, GSON.toJson(json));
 	}
 
 	public static void setJsonFile(String path, JsonObject element) {
-		BleachFileMang.createEmptyFile(path);
-		BleachFileMang.appendFile(path, GSON.toJson(element));
+		GrayFileMang.createEmptyFile(path);
+		GrayFileMang.appendFile(path, GSON.toJson(element));
 	}
 
 	public static JsonElement readJsonElement(String path, String key) {
@@ -60,7 +60,7 @@ public class BleachJsonHelper {
 	}
 
 	public static JsonObject readJsonFile(String path) {
-		String content = BleachFileMang.readFile(path);
+		String content = GrayFileMang.readFile(path);
 
 		if (content.isEmpty())
 			return null;
@@ -68,9 +68,9 @@ public class BleachJsonHelper {
 		try {
 			return JsonParser.parseString(content).getAsJsonObject();
 		} catch (JsonParseException | IllegalStateException e) {
-			BleachLogger.logger.error("Error trying to read json file \"" + path + "\", Deleting file!", e);
+			GrayLogger.logger.error("Error trying to read json file \"" + path + "\", Deleting file!", e);
 
-			BleachFileMang.deleteFile(path);
+			GrayFileMang.deleteFile(path);
 			return null;
 		}
 	}

@@ -1,12 +1,12 @@
-package org.bleachhack.util.world;
+package org.grayhack.util.world;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.BiConsumer;
 
-import org.bleachhack.BleachHack;
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.eventbus.BleachSubscribe;
+import org.grayhack.GrayHack;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.eventbus.GraySubscribe;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -42,11 +42,11 @@ public class ChunkProcessor {
 
 	public void start() {
 		executor = Executors.newFixedThreadPool(threads);
-		BleachHack.eventBus.subscribe(this);
+		GrayHack.eventBus.subscribe(this);
 	}
 
 	public void stop() {
-		BleachHack.eventBus.unsubscribe(this);
+		GrayHack.eventBus.unsubscribe(this);
 		executor.shutdownNow();
 		executor = null;
 	}
@@ -64,7 +64,7 @@ public class ChunkProcessor {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onReadPacket(EventPacket.Read event) {
 		if (MinecraftClient.getInstance().world == null)
 			return;

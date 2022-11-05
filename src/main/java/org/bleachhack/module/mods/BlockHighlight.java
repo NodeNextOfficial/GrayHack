@@ -1,20 +1,20 @@
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import java.io.IOException;
 
-import org.bleachhack.event.events.EventRenderBlockOutline;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingColor;
-import org.bleachhack.setting.module.SettingMode;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.color.QuadColor;
-import org.bleachhack.util.shader.BleachCoreShaders;
-import org.bleachhack.util.shader.ColorVertexConsumerProvider;
-import org.bleachhack.util.shader.ShaderEffectWrapper;
+import org.grayhack.event.events.EventRenderBlockOutline;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingColor;
+import org.grayhack.setting.module.SettingMode;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.color.QuadColor;
+import org.grayhack.util.shader.GrayCoreShaders;
+import org.grayhack.util.shader.ColorVertexConsumerProvider;
+import org.grayhack.util.shader.ShaderEffectWrapper;
 
 import com.google.gson.JsonSyntaxException;
 
@@ -54,21 +54,21 @@ public class BlockHighlight extends Module {
 
 		try {
 			shader = new ShaderEffectWrapper(
-					new ShaderEffect(mc.getTextureManager(), mc.getResourceManager(), mc.getFramebuffer(), new Identifier("bleachhack", "shaders/post/entity_outline.json")));
+					new ShaderEffect(mc.getTextureManager(), mc.getResourceManager(), mc.getFramebuffer(), new Identifier("grayhack", "shaders/post/entity_outline.json")));
 
-			colorVertexer = new ColorVertexConsumerProvider(shader.getFramebuffer("main"), BleachCoreShaders::getColorOverlayShader);
+			colorVertexer = new ColorVertexConsumerProvider(shader.getFramebuffer("main"), GrayCoreShaders::getColorOverlayShader);
 		} catch (JsonSyntaxException | IOException e) {
 			e.printStackTrace();
 			setEnabled(false);
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRenderBlockOutline(EventRenderBlockOutline event) {
 		event.setCancelled(true);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onWorldRender(EventWorldRender.Post event) {
 		int mode = getSetting(0).asMode().getMode();
 

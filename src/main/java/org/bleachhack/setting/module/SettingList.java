@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.setting.module;
+package org.grayhack.setting.module;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
@@ -20,15 +20,15 @@ import net.minecraft.sound.SoundEvents;
 
 import net.minecraft.text.Text;
 
-import org.bleachhack.gui.clickgui.window.ModuleWindow;
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.gui.window.WindowScreen;
-import org.bleachhack.gui.window.widget.WindowButtonWidget;
-import org.bleachhack.gui.window.widget.WindowScrollbarWidget;
-import org.bleachhack.gui.window.widget.WindowTextFieldWidget;
-import org.bleachhack.setting.SettingDataHandler;
-import org.bleachhack.setting.SettingDataHandlers;
-import org.bleachhack.util.io.BleachFileHelper;
+import org.grayhack.gui.clickgui.window.ModuleWindow;
+import org.grayhack.gui.window.Window;
+import org.grayhack.gui.window.WindowScreen;
+import org.grayhack.gui.window.widget.WindowButtonWidget;
+import org.grayhack.gui.window.widget.WindowScrollbarWidget;
+import org.grayhack.gui.window.widget.WindowTextFieldWidget;
+import org.grayhack.setting.SettingDataHandler;
+import org.grayhack.setting.SettingDataHandlers;
+import org.grayhack.util.io.GrayFileHelper;
 
 import java.util.*;
 
@@ -124,18 +124,18 @@ public abstract class SettingList<T> extends ModuleSetting<LinkedHashSet<T>> {
 			getWindow(0).addWidget(new WindowButtonWidget(x2 - 50, y2 - 22, x2 - 5, y2 - 5, "Reset", () -> {
 				getValue().clear();
 				getValue().addAll(defaultValue);
-				BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
+				GrayFileHelper.SCHEDULE_SAVE_MODULES.set(true);
 			}));
 
 			getWindow(0).addWidget(new WindowButtonWidget(x2 - 100, y2 - 22, x2 - 55, y2 - 5, "Clear", () -> {
 				getValue().clear();
-				BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
+				GrayFileHelper.SCHEDULE_SAVE_MODULES.set(true);
 			}));
 
 			getWindow(0).addWidget(new WindowButtonWidget(x2 - 150, y2 - 22, x2 - 105, y2 - 5, "Add All", () -> {
 				getValue().clear();
 				getValue().addAll(itemPool);
-				BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
+				GrayFileHelper.SCHEDULE_SAVE_MODULES.set(true);
 			}));
 
 			inputField = getWindow(0).addWidget(new WindowTextFieldWidget(5, y2 - 22, x2 / 3, 17, inputField != null ? inputField.textField.getText() : ""));
@@ -254,12 +254,12 @@ public abstract class SettingList<T> extends ModuleSetting<LinkedHashSet<T>> {
 				getValue().add(toAddItem);
 				inputField.textField.setTextFieldFocused(true);
 				client.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F, 0.3F));
-				BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
+				GrayFileHelper.SCHEDULE_SAVE_MODULES.set(true);
 				return false;
 			} else if (toDeleteItem != null) {
 				getValue().remove(toDeleteItem);
 				client.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F, 0.3F));
-				BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
+				GrayFileHelper.SCHEDULE_SAVE_MODULES.set(true);
 			}
 
 			return super.mouseClicked(mouseX, mouseY, button);

@@ -1,20 +1,20 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingMode;
-import org.bleachhack.util.PlayerInteractEntityC2SUtils;
-import org.bleachhack.util.PlayerInteractEntityC2SUtils.InteractType;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingMode;
+import org.grayhack.util.PlayerInteractEntityC2SUtils;
+import org.grayhack.util.PlayerInteractEntityC2SUtils.InteractType;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
@@ -24,7 +24,7 @@ import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
 /**
- * @author sl, Bleach
+ * @author sl, Gray
  */
 public class Criticals extends Module {
 
@@ -33,7 +33,7 @@ public class Criticals extends Module {
 				new SettingMode("Mode", "MiniJump", "FullJump").withDesc("Criticals mode, MiniJump does the smallest posible jump, FullJump simulates a full jump."));
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void sendPacket(EventPacket.Send event) {
 		if (event.getPacket() instanceof PlayerInteractEntityC2SPacket) {
 			PlayerInteractEntityC2SPacket packet = (PlayerInteractEntityC2SPacket) event.getPacket();

@@ -1,4 +1,4 @@
-package org.bleachhack.gui.clickgui.window;
+package org.grayhack.gui.clickgui.window;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package org.bleachhack.util.shader;
+package org.grayhack.util.shader;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
@@ -57,7 +57,7 @@ public class ColorVertexConsumerProvider {
 
 	public void setFramebuffer(Framebuffer framebuffer) {
 		layerCreator = memoizeTexture(texture -> new RenderLayer(
-				"bleachhack_outline", VertexFormats.POSITION_COLOR_TEXTURE, VertexFormat.DrawMode.QUADS, 256, false, false,
+				"grayhack_outline", VertexFormats.POSITION_COLOR_TEXTURE, VertexFormat.DrawMode.QUADS, 256, false, false,
 				() -> {
 					texture.startDrawing();
 					RenderSystem.setShader(shader);

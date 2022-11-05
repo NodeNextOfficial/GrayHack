@@ -1,31 +1,31 @@
 
-# BleachHack
-![](https://img.shields.io/github/downloads/bleachdev/BleachHack/total?style=flat-square)
-![](https://img.shields.io/tokei/lines/github/bleachdev/BleachHack?style=flat-square)
-![](https://img.shields.io/github/languages/code-size/bleachdev/BleachHack?style=flat-square)
-![](https://img.shields.io/github/last-commit/bleachdev/BleachHack?style=flat-square)
+# GrayHack
+![](https://img.shields.io/github/downloads/graydev/GrayHack/total?style=flat-square)
+![](https://img.shields.io/tokei/lines/github/graydev/GrayHack?style=flat-square)
+![](https://img.shields.io/github/languages/code-size/graydev/GrayHack?style=flat-square)
+![](https://img.shields.io/github/last-commit/graydev/GrayHack?style=flat-square)
 ![](https://img.shields.io/badge/daily%20commit-yes-blue?style=flat-square)
 ![](https://img.shields.io/discord/620600892718055434?style=flat-square)
 
 Obama approved Minecraft utility mod for Fabric 1.18 and 1.19.
 
-> Website: https://bleachhack.org/  
-> Discord: https://bleachhack.org/discord
+> Website: https://grayhack.org/  
+> Discord: https://grayhack.org/discord
 
 ## Showcase
 <details>
  <summary>Images</summary>
 
- ![](https://res.bleachhack.org/images/ClickguiShowcase.jpg)
+ ![](https://res.grayhack.org/images/ClickguiShowcase.jpg)
 
- ![](https://res.bleachhack.org/images/RenderShowcase.jpg)
+ ![](https://res.grayhack.org/images/RenderShowcase.jpg)
 
 </details>
 
 ## Installation
 ### For normal people
 
-Follow the Instructions on the [download page](https://bleachhack.org/downloads.html).
+Follow the Instructions on the [download page](https://grayhack.org/downloads.html).
 
 ### For (200 IQ) developers
 
@@ -64,11 +64,11 @@ Generate the needed files for your preferred IDE.
   Use [this link](https://fabricmc.net/wiki/tutorial:setup) for more information.
   It should be pretty similar to the eclipse and idea setup.
   
-###### *To get the source code of Pre-1.17 versions, use [this](https://github.com/BleachDrinker420/BleachHack/tree/de55562e94) commit and select the folder of the version you want.*
+###### *To get the source code of Pre-1.17 versions, use [this](https://github.com/GrayDrinker420/GrayHack/tree/de55562e94) commit and select the folder of the version you want.*
 
 ## Recommended Mods
 
-Here are some nice to have mods that are compatible with BleachHack, none of these require Fabric API.
+Here are some nice to have mods that are compatible with GrayHack, none of these require Fabric API.
 
 ### [Multiconnect](https://github.com/Earthcomputer/multiconnect) or [ViaFabric](https://github.com/ViaVersion/ViaFabric)
 Mods that allows you to connect to any 1.8-1.18 server from a 1.18 client.
@@ -81,4 +81,4 @@ Fixes Mojang's spaghet.
 
 ## License
 
-If you are distributing a custom version of BleachHack or a mod with ported features of BleachHack, you are **required** to disclose the source code, state changes, use a compatible license, and follow the [license terms](https://github.com/BleachDrinker420/BleachHack/blob/master/LICENSE).
+If you are distributing a custom version of GrayHack or a mod with ported features of GrayHack, you are **required** to disclose the source code, state changes, use a compatible license, and follow the [license terms](https://github.com/GrayDrinker420/GrayHack/blob/master/LICENSE).

@@ -1,10 +1,10 @@
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventInteract;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingBlockList;
+import org.grayhack.event.events.EventInteract;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingBlockList;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -37,7 +37,7 @@ public class NoInteract extends Module {
                         Blocks.RESPAWN_ANCHOR).withDesc("Edit the blocks to not interact with."));
     }
 
-    @BleachSubscribe
+    @GraySubscribe
     public void onSendPacket(EventInteract.InteractBlock event) {
         if (getSetting(0).asList(Block.class).contains(mc.world.getBlockState(event.getHitResult().getBlockPos()).getBlock())) {
         	event.setCancelled(true);

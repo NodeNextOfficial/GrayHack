@@ -1,20 +1,20 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.gui;
+package org.grayhack.gui;
 
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.gui.window.WindowScreen;
-import org.bleachhack.gui.window.widget.WindowButtonWidget;
-import org.bleachhack.gui.window.widget.WindowScrollbarWidget;
-import org.bleachhack.gui.window.widget.WindowTextWidget;
-import org.bleachhack.gui.window.widget.WindowWidget;
-import org.bleachhack.setting.option.Option;
+import org.grayhack.gui.window.Window;
+import org.grayhack.gui.window.WindowScreen;
+import org.grayhack.gui.window.widget.WindowButtonWidget;
+import org.grayhack.gui.window.widget.WindowScrollbarWidget;
+import org.grayhack.gui.window.widget.WindowTextWidget;
+import org.grayhack.gui.window.widget.WindowWidget;
+import org.grayhack.setting.option.Option;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
@@ -24,14 +24,14 @@ import net.minecraft.text.HoverEvent;
 import net.minecraft.text.Text;
 
 
-public class BleachOptionsScreen extends WindowScreen {
+public class GrayOptionsScreen extends WindowScreen {
 
 	private Screen parent;
 
 	private WindowScrollbarWidget scrollbar;
 
-	public BleachOptionsScreen(Screen parent) {
-		super(Text.literal("BleachHack Options"));
+	public GrayOptionsScreen(Screen parent) {
+		super(Text.literal("GrayHack Options"));
 		this.parent = parent;
 	}
 

@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.gui;
+package org.grayhack.gui;
 
 import com.google.common.io.Resources;
 import com.google.gson.JsonParser;
@@ -28,15 +28,15 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.tuple.Pair;
-import org.bleachhack.BleachHack;
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.gui.window.WindowScreen;
-import org.bleachhack.gui.window.widget.*;
-import org.bleachhack.setting.option.Option;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.auth.LoginCrypter;
-import org.bleachhack.util.auth.LoginHelper;
-import org.bleachhack.util.io.BleachFileMang;
+import org.grayhack.GrayHack;
+import org.grayhack.gui.window.Window;
+import org.grayhack.gui.window.WindowScreen;
+import org.grayhack.gui.window.widget.*;
+import org.grayhack.setting.option.Option;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.auth.LoginCrypter;
+import org.grayhack.util.auth.LoginHelper;
+import org.grayhack.util.io.GrayFileMang;
 
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -82,7 +82,7 @@ public class AccountManagerScreen extends WindowScreen {
 
 		mainWindow.addWidget(new WindowButtonWidget(w - 70, h - 22, w - 3, h - 3, "Login", () -> {
 			if (Option.PLAYERLIST_SHOW_AS_BH_USER.getValue())
-				BleachHack.playerMang.stopPinger();
+				GrayHack.playerMang.stopPinger();
 
 			Account account = accounts.get(selected);
 			for (int i = 0; i < textFieldWidgets.size(); i++) {
@@ -95,7 +95,7 @@ public class AccountManagerScreen extends WindowScreen {
 			saveAccounts();
 
 			if (Option.PLAYERLIST_SHOW_AS_BH_USER.getValue())
-				BleachHack.playerMang.startPinger();
+				GrayHack.playerMang.startPinger();
 		}));
 
 		rightsideWidgets.addAll(mainWindow.getWidgets());
@@ -108,9 +108,9 @@ public class AccountManagerScreen extends WindowScreen {
 		if (accounts == null) {
 			accounts = new ArrayList<>();
 
-			BleachFileMang.createFile("logins.txt");
+			GrayFileMang.createFile("logins.txt");
 
-			for (String s : BleachFileMang.readFileLines("logins.txt")) {
+			for (String s : GrayFileMang.readFileLines("logins.txt")) {
 				addAccount(Account.deserialize(s.replace("\r", "").replace("\n", "").split(":", -1)));
 			}
 		}
@@ -248,8 +248,8 @@ public class AccountManagerScreen extends WindowScreen {
 	}
 
 	private void saveAccounts() {
-		BleachFileMang.createEmptyFile("logins.txt");
-		BleachFileMang.appendFile("logins.txt", accounts.stream()
+		GrayFileMang.createEmptyFile("logins.txt");
+		GrayFileMang.appendFile("logins.txt", accounts.stream()
 				.map(a -> {
 					try {
 						return a.type.ordinal() + ":" + a.success + ":"
@@ -396,7 +396,7 @@ public class AccountManagerScreen extends WindowScreen {
 					return new Account(type, success, data[2], data[3], inputs);
 				}
 			} catch (Exception e) {
-				BleachLogger.logger.error("Unable to deserialize account " + data[0], e);
+				GrayLogger.logger.error("Unable to deserialize account " + data[0], e);
 			}
 
 			return null;

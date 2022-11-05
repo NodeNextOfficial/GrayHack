@@ -1,24 +1,24 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.mixin;
+package org.grayhack.mixin;
 
-import org.bleachhack.BleachHack;
-import org.bleachhack.event.events.EventClientMove;
-import org.bleachhack.event.events.EventSendMovementPackets;
-import org.bleachhack.event.events.EventSwingHand;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.module.mods.BetterPortal;
-import org.bleachhack.module.mods.EntityControl;
-import org.bleachhack.module.mods.Freecam;
-import org.bleachhack.module.mods.NoSlow;
-import org.bleachhack.module.mods.SafeWalk;
-import org.bleachhack.module.mods.Scaffold;
+import org.grayhack.GrayHack;
+import org.grayhack.event.events.EventClientMove;
+import org.grayhack.event.events.EventSendMovementPackets;
+import org.grayhack.event.events.EventSwingHand;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.module.mods.BetterPortal;
+import org.grayhack.module.mods.EntityControl;
+import org.grayhack.module.mods.Freecam;
+import org.grayhack.module.mods.NoSlow;
+import org.grayhack.module.mods.SafeWalk;
+import org.grayhack.module.mods.Scaffold;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -57,7 +57,7 @@ public class MixinClientPlayerEntity extends AbstractClientPlayerEntity {
 	@Inject(method = "sendMovementPackets", at = @At("HEAD"), cancellable = true)
 	private void sendMovementPackets(CallbackInfo info) {
 		EventSendMovementPackets event = new EventSendMovementPackets();
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		if (event.isCancelled()) {
 			info.cancel();
@@ -77,7 +77,7 @@ public class MixinClientPlayerEntity extends AbstractClientPlayerEntity {
 	@Inject(method = "move", at = @At("HEAD"), cancellable = true)
 	private void move(MovementType type, Vec3d movement, CallbackInfo info) {
 		EventClientMove event = new EventClientMove(type, movement);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 		if (event.isCancelled()) {
 			info.cancel();
 		} else if (!type.equals(event.getType()) || !movement.equals(event.getVec())) {
@@ -117,7 +117,7 @@ public class MixinClientPlayerEntity extends AbstractClientPlayerEntity {
 	@Overwrite
 	public void swingHand(Hand hand) {
 		EventSwingHand event = new EventSwingHand(hand);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		if (!event.isCancelled()) {
 			super.swingHand(event.getHand());

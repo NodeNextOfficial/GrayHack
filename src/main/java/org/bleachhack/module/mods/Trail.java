@@ -1,27 +1,27 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingColor;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.color.LineColor;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingColor;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.color.LineColor;
 
 import net.minecraft.util.math.Vec3d;
 
@@ -52,7 +52,7 @@ public class Trail extends Module {
 		super.onDisable(inWorld);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (!getSetting(0).asToggle().getState()) {
 			return;
@@ -67,7 +67,7 @@ public class Trail extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRender(EventWorldRender.Post event) {
 		int color = getSetting(2).asColor().getRGB();
 		int secondColor = getSetting(3).asToggle().getChild(0).asColor().getRGB();

@@ -1,4 +1,4 @@
-package org.bleachhack.util.collections;
+package org.grayhack.util.collections;
 
 import java.util.HashMap;
 import java.util.Map;

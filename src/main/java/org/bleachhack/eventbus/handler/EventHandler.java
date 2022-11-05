@@ -1,7 +1,7 @@
-package org.bleachhack.eventbus.handler;
+package org.grayhack.eventbus.handler;
 
 import org.apache.logging.log4j.Logger;
-import org.bleachhack.event.Event;
+import org.grayhack.event.Event;
 
 public abstract class EventHandler {
 

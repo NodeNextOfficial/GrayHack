@@ -1,4 +1,4 @@
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import net.minecraft.client.gui.screen.DisconnectedScreen;
 import net.minecraft.entity.player.PlayerEntity;
@@ -7,18 +7,18 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.bleachhack.event.events.EventEntityRender;
-import org.bleachhack.event.events.EventOpenScreen;
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.BleachQueue;
-import org.bleachhack.util.render.WorldRenderer;
-import org.bleachhack.util.world.PlayerCopyEntity;
+import org.grayhack.event.events.EventEntityRender;
+import org.grayhack.event.events.EventOpenScreen;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.GrayQueue;
+import org.grayhack.util.render.WorldRenderer;
+import org.grayhack.util.world.PlayerCopyEntity;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -70,7 +70,7 @@ public class LogoutSpot extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onReadPacket(EventPacket.Read event) {
 		if (!(event.getPacket() instanceof PlayerListS2CPacket) || mc.world == null) {
 			return;
@@ -86,7 +86,7 @@ public class LogoutSpot extends Module {
 				if (player != null && !mc.player.equals(player) && !players.containsKey(player.getUuid())) {
 					PlayerCopyEntity copy = new PlayerCopyEntity(player);
 					players.put(player.getUuid(), Pair.of(copy, System.currentTimeMillis()));
-					BleachQueue.add("logoutspot", copy::spawn);
+					GrayQueue.add("logoutspot", copy::spawn);
 				}
 			}
 		}
@@ -97,14 +97,14 @@ public class LogoutSpot extends Module {
 				Pair<PlayerCopyEntity, Long> fakePlayer = players.remove(entry.getProfile().getId());
 
 				if (fakePlayer != null && mc.world != null) {
-					BleachQueue.add("logoutspot", fakePlayer.getLeft()::despawn);
+					GrayQueue.add("logoutspot", fakePlayer.getLeft()::despawn);
 				}
 			}
 		}
 	}
 
 	// Removes the fake players based on settings
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (getSetting(0).asToggle().getState() && getSetting(0).asToggle().getChild(0).asToggle().getState()) {
 			players.values().removeIf(pair -> {
@@ -133,7 +133,7 @@ public class LogoutSpot extends Module {
 		players.values().forEach(e -> e.getLeft().setGhost(getSetting(2).asToggle().getState()));
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onPostEntityRender(EventEntityRender.PostAll event) {
 		for (Pair<PlayerCopyEntity, Long> playerPair: players.values()) {
 			if (getSetting(1).asToggle().getState()) {
@@ -168,7 +168,7 @@ public class LogoutSpot extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onOpenScreen(EventOpenScreen event) {
 		if (getSetting(0).asToggle().getState() && getSetting(0).asToggle().getChild(2).asToggle().getState()
 				&& event.getScreen() instanceof DisconnectedScreen) {

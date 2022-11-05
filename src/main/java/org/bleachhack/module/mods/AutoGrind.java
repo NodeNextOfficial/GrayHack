@@ -1,11 +1,11 @@
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingItemList;
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingItemList;
+import org.grayhack.util.GrayLogger;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -26,12 +26,12 @@ public class AutoGrind extends Module {
 		super.onEnable(inWorld);
 
 		if (getSetting(0).asList(Item.class).getValue().isEmpty()) {
-			BleachLogger.error("AutoGrind items are empty.");
+			GrayLogger.error("AutoGrind items are empty.");
 			setEnabled(false);
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (!(mc.player.currentScreenHandler instanceof GrindstoneScreenHandler))
 			return;

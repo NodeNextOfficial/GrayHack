@@ -1,4 +1,4 @@
-package org.bleachhack.command.exception;
+package org.grayhack.command.exception;
 
 import net.minecraft.command.CommandException;
 

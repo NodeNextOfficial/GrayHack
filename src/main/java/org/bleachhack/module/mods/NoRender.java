@@ -1,28 +1,28 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.command.Command;
-import org.bleachhack.event.events.EventBlockEntityRender;
-import org.bleachhack.event.events.EventEntityRender;
-import org.bleachhack.event.events.EventParticle;
-import org.bleachhack.event.events.EventRenderOverlay;
-import org.bleachhack.event.events.EventRenderScreenBackground;
-import org.bleachhack.event.events.EventSoundPlay;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingMode;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.io.BleachFileHelper;
+import org.grayhack.command.Command;
+import org.grayhack.event.events.EventBlockEntityRender;
+import org.grayhack.event.events.EventEntityRender;
+import org.grayhack.event.events.EventParticle;
+import org.grayhack.event.events.EventRenderOverlay;
+import org.grayhack.event.events.EventRenderScreenBackground;
+import org.grayhack.event.events.EventSoundPlay;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.gui.window.Window;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingMode;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.io.GrayFileHelper;
 
 import com.google.gson.JsonElement;
 
@@ -83,7 +83,7 @@ public class NoRender extends Module {
 						new SettingToggle("Xp Orbs", false).withDesc("Removes experience orbs."),
 						new SettingToggle("Items", false).withDesc("Removes items.")));
 
-		JsonElement signText = BleachFileHelper.readMiscSetting("customSignText");
+		JsonElement signText = GrayFileHelper.readMiscSetting("customSignText");
 
 		if (signText != null) {
 			for (int i = 0; i < Math.min(4, signText.getAsJsonArray().size()); i++) {
@@ -124,7 +124,7 @@ public class NoRender extends Module {
 		return isEnabled() && getSetting(3).asToggle().getState() && getEntityChild(entityChild).getState();
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRenderOverlay(EventRenderOverlay event) {
 		if (event.getTexture().getPath().equals("textures/misc/pumpkinblur.png") && isOverlayToggled(4)) {
 			event.setCancelled(true);
@@ -133,7 +133,7 @@ public class NoRender extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onEntityRender(EventEntityRender.Single.Pre event) {
 		if ((isEntityToggled(0) && event.getEntity() instanceof ArmorStandEntity)
 				|| (isEntityToggled(1) && event.getEntity() instanceof FallingBlockEntity)
@@ -145,7 +145,7 @@ public class NoRender extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onSignRender(EventBlockEntityRender.Single.Pre event) {
 		if (event.getBlockEntity() instanceof SignBlockEntity && isWorldToggled(0)) {
 			SettingToggle signSetting = getWorldChild(0);
@@ -167,7 +167,7 @@ public class NoRender extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onParticle(EventParticle.Normal event) {
 		if ((isWorldToggled(2) && event.getParticle() instanceof ElderGuardianAppearanceParticle)
 				|| (isParticleToggled(0) && event.getParticle() instanceof CampfireSmokeParticle)
@@ -177,14 +177,14 @@ public class NoRender extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onParticleEmitter(EventParticle.Emitter event) {
 		if (isWorldToggled(1) && getWorldChild(1).getChild(0).asToggle().getState() && event.getEffect().getType() == ParticleTypes.TOTEM_OF_UNDYING) {
 			event.setCancelled(true);
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onSoundPlay(EventSoundPlay.Normal event) {
 		String path = event.getInstance().getId().getPath();
 		if (isWorldToggled(1) && getWorldChild(1).getChild(1).asToggle().getState() && path.equals("item.totem.use")) {
@@ -194,7 +194,7 @@ public class NoRender extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRenderGuiBackground(EventRenderScreenBackground event) {
 		if (mc.world != null && isOverlayToggled(7)) {
 			SettingToggle guiSetting = getOverlayChild(7);

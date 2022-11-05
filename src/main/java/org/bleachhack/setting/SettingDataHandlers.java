@@ -1,4 +1,4 @@
-package org.bleachhack.setting;
+package org.grayhack.setting;
 
 import java.util.Collection;
 import java.util.function.Supplier;

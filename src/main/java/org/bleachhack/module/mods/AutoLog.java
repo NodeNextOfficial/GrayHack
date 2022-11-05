@@ -1,23 +1,23 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.BleachHack;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.world.DamageUtils;
-import org.bleachhack.util.world.EntityUtils;
+import org.grayhack.GrayHack;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.world.DamageUtils;
+import org.grayhack.util.world.EntityUtils;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -56,7 +56,7 @@ public class AutoLog extends Module {
 		super.onDisable(inWorld);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		Text logText = getLogText();
 		
@@ -64,7 +64,7 @@ public class AutoLog extends Module {
 			smartDisabled = false;
 			
 			if (getSetting(4).asToggle().getChild(0).asToggle().getState()) {
-				BleachLogger.info("Re-enabled AutoLog!");
+				GrayLogger.info("Re-enabled AutoLog!");
 			}
 		} else if (!smartDisabled && logText != null) {
 			log(logText);
@@ -96,7 +96,7 @@ public class AutoLog extends Module {
 
 		if (getSetting(1).asToggle().getState() && !hasTotem) {
 			for (PlayerEntity player: mc.world.getPlayers()) {
-				if ((!getSetting(1).asToggle().getChild(0).asToggle().getState() && BleachHack.friendMang.has(player))
+				if ((!getSetting(1).asToggle().getChild(0).asToggle().getState() && GrayHack.friendMang.has(player))
 						|| player == mc.player) {
 					continue;
 				}
@@ -124,7 +124,7 @@ public class AutoLog extends Module {
 
 			for (PlayerEntity player: mc.world.getPlayers()) {
 				if (!EntityUtils.isOtherServerPlayer(player)
-						|| (!getSetting(3).asToggle().getChild(1).asToggle().getState() && BleachHack.friendMang.has(player))) {
+						|| (!getSetting(3).asToggle().getChild(1).asToggle().getState() && GrayHack.friendMang.has(player))) {
 					continue;
 				}
 

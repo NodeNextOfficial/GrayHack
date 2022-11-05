@@ -1,18 +1,18 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.mixin;
+package org.grayhack.mixin;
 
-import org.bleachhack.BleachHack;
-import org.bleachhack.command.Command;
-import org.bleachhack.event.events.EventKeyPress;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.setting.option.Option;
+import org.grayhack.GrayHack;
+import org.grayhack.command.Command;
+import org.grayhack.event.events.EventKeyPress;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.setting.option.Option;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -29,7 +29,7 @@ public class MixinKeyboard {
 	private void onKeyEvent(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
 		if (key >= 0) {
 			EventKeyPress.Global event = new EventKeyPress.Global(key, scanCode, action, modifiers);
-			BleachHack.eventBus.post(event);
+			GrayHack.eventBus.post(event);
 
 			if (event.isCancelled()) {
 				callbackInfo.cancel();
@@ -47,7 +47,7 @@ public class MixinKeyboard {
 
 		if (key >= 0) {
 			EventKeyPress.InWorld event = new EventKeyPress.InWorld(key, scanCode);
-			BleachHack.eventBus.post(event);
+			GrayHack.eventBus.post(event);
 
 			if (event.isCancelled()) {
 				callbackInfo.cancel();

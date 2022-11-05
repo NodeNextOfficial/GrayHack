@@ -1,33 +1,33 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.bleachhack.event.events.EventInteract;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingMode;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.operation.Operation;
-import org.bleachhack.util.operation.OperationBlueprint;
-import org.bleachhack.util.operation.OperationList;
-import org.bleachhack.util.operation.PlaceDirOperation;
-import org.bleachhack.util.operation.PlaceOperation;
-import org.bleachhack.util.operation.RemoveOperation;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.color.QuadColor;
+import org.grayhack.event.events.EventInteract;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingMode;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.operation.Operation;
+import org.grayhack.util.operation.OperationBlueprint;
+import org.grayhack.util.operation.OperationList;
+import org.grayhack.util.operation.PlaceDirOperation;
+import org.grayhack.util.operation.PlaceOperation;
+import org.grayhack.util.operation.RemoveOperation;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.color.QuadColor;
 
 import net.minecraft.item.Items;
 import net.minecraft.util.hit.BlockHitResult;
@@ -159,7 +159,7 @@ public class AutoBuild extends Module {
 		super.onDisable(inWorld);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (!active) {
 			ray = (BlockHitResult) mc.player.raycast(40, mc.getTickDelta(), false);
@@ -181,7 +181,7 @@ public class AutoBuild extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRender(EventWorldRender.Post event) {
 		if (current != null) {
 			//RenderUtils.drawOutlineBox(current.getBox(), 1f, 1f, 0f, 0.5f);
@@ -200,7 +200,7 @@ public class AutoBuild extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onInteract(EventInteract.InteractBlock event) {
 		if (ray != null && !active) {
 			event.setCancelled(true);

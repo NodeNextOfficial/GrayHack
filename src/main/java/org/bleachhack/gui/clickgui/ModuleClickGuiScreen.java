@@ -1,28 +1,28 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.gui.clickgui;
+package org.grayhack.gui.clickgui;
 
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
-import org.bleachhack.BleachHack;
-import org.bleachhack.command.Command;
-import org.bleachhack.gui.clickgui.window.ClickGuiWindow;
-import org.bleachhack.gui.clickgui.window.ModuleWindow;
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.module.mods.ClickGui;
-import org.bleachhack.util.io.BleachFileHelper;
+import org.grayhack.GrayHack;
+import org.grayhack.command.Command;
+import org.grayhack.gui.clickgui.window.ClickGuiWindow;
+import org.grayhack.gui.clickgui.window.ModuleWindow;
+import org.grayhack.gui.window.Window;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.module.mods.ClickGui;
+import org.grayhack.util.io.GrayFileHelper;
 
 import net.minecraft.SharedConstants;
 import net.minecraft.client.gui.widget.TextFieldWidget;
@@ -67,7 +67,7 @@ public class ModuleClickGuiScreen extends ClickGuiScreen {
 	}
 
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		BleachFileHelper.SCHEDULE_SAVE_CLICKGUI.set(true);
+		GrayFileHelper.SCHEDULE_SAVE_CLICKGUI.set(true);
 		ClickGui clickGui = ModuleManager.getModule(ClickGui.class);
 
 		searchField.visible = clickGui.getSetting(1).asToggle().getState();
@@ -100,8 +100,8 @@ public class ModuleClickGuiScreen extends ClickGuiScreen {
 
 		super.render(matrices, mouseX, mouseY, delta);
 
-		textRenderer.draw(matrices, "BleachHack-" + BleachHack.VERSION + "-" + SharedConstants.getGameVersion().getName(), 3, 3, 0x305090);
-		textRenderer.draw(matrices, "BleachHack-" + BleachHack.VERSION + "-" + SharedConstants.getGameVersion().getName(), 2, 2, 0x6090d0);
+		textRenderer.draw(matrices, "GrayHack-" + GrayHack.VERSION + "-" + SharedConstants.getGameVersion().getName(), 3, 3, 0x305090);
+		textRenderer.draw(matrices, "GrayHack-" + GrayHack.VERSION + "-" + SharedConstants.getGameVersion().getName(), 2, 2, 0x6090d0);
 
 		if (clickGui.getSetting(2).asToggle().getState()) {
 			textRenderer.drawWithShadow(matrices, "Current prefix is: \"" + Command.getPrefix() + "\" (" + Command.getPrefix() + "help)", 2, height - 20, 0x99ff99);

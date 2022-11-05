@@ -1,20 +1,20 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.command.commands;
+package org.grayhack.command.commands;
 
 import net.minecraft.client.util.InputUtil;
-import org.bleachhack.command.Command;
-import org.bleachhack.command.CommandCategory;
-import org.bleachhack.command.exception.CmdSyntaxException;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.command.Command;
+import org.grayhack.command.CommandCategory;
+import org.grayhack.command.exception.CmdSyntaxException;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.util.GrayLogger;
 
 import java.util.Locale;
 
@@ -39,7 +39,7 @@ public class CmdBind extends Command {
 				}
 			}
 
-			BleachLogger.info("Cleared " + c + " Binds");
+			GrayLogger.info("Cleared " + c + " Binds");
 		} else if (args.length >= 2 && (args.length >= 3 || !args[1].equalsIgnoreCase("set"))) {
 			for (Module m : ModuleManager.getModules()) {
 				if (m.getName().equalsIgnoreCase(args[1])) {
@@ -68,10 +68,10 @@ public class CmdBind extends Command {
 						}
 
 						m.setKey(key);
-						BleachLogger.info("Bound " + m.getName() + " To " + args[2] + " (KEY" + key + ")");
+						GrayLogger.info("Bound " + m.getName() + " To " + args[2] + " (KEY" + key + ")");
 					} else if (args[0].equalsIgnoreCase("del")) {
 						m.setKey(Module.KEY_UNBOUND);
-						BleachLogger.info("Removed Bind For " + m.getName());
+						GrayLogger.info("Removed Bind For " + m.getName());
 					}
 
 					return;

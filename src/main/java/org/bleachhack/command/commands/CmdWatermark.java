@@ -1,19 +1,19 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.command.commands;
+package org.grayhack.command.commands;
 
-import org.bleachhack.BleachHack;
-import org.bleachhack.command.Command;
-import org.bleachhack.command.CommandCategory;
-import org.bleachhack.command.exception.CmdSyntaxException;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.io.BleachFileHelper;
+import org.grayhack.GrayHack;
+import org.grayhack.command.Command;
+import org.grayhack.command.CommandCategory;
+import org.grayhack.command.exception.CmdSyntaxException;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.io.GrayFileHelper;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
@@ -27,18 +27,18 @@ public class CmdWatermark extends Command {
 	public CmdWatermark() {
 		super("watermark", "Sets the client watermark.", "watermark reset [color/text] | watermark text <text> | watermark color <color 1> <color 2>", CommandCategory.MISC);
 
-		JsonElement text1 = BleachFileHelper.readMiscSetting("watermarkText1");
-		JsonElement text2 = BleachFileHelper.readMiscSetting("watermarkText2");
-		JsonElement color1 = BleachFileHelper.readMiscSetting("watermarkColor1");
-		JsonElement color2 = BleachFileHelper.readMiscSetting("watermarkColor2");
+		JsonElement text1 = GrayFileHelper.readMiscSetting("watermarkText1");
+		JsonElement text2 = GrayFileHelper.readMiscSetting("watermarkText2");
+		JsonElement color1 = GrayFileHelper.readMiscSetting("watermarkColor1");
+		JsonElement color2 = GrayFileHelper.readMiscSetting("watermarkColor2");
 
 		if (text1 != null && text1.isJsonPrimitive() && text2 != null && text2.isJsonPrimitive()) {
-			BleachHack.watermark.setStrings(text1.getAsString(), text2.getAsString());
+			GrayHack.watermark.setStrings(text1.getAsString(), text2.getAsString());
 		}
 
 		if (color1 != null && color1.isJsonPrimitive() && color1.getAsJsonPrimitive().isNumber()
 				&& color2 != null && color2.isJsonPrimitive() && color2.getAsJsonPrimitive().isNumber()) {
-			BleachHack.watermark.setColor(color1.getAsInt(), color2.getAsInt());
+			GrayHack.watermark.setColor(color1.getAsInt(), color2.getAsInt());
 		}
 	}
 
@@ -50,21 +50,21 @@ public class CmdWatermark extends Command {
 
 		if (args[0].equalsIgnoreCase("reset")) {
 			if (args.length == 1) {
-				BleachHack.watermark.reset(true, true);
+				GrayHack.watermark.reset(true, true);
 				saveText();
 				saveColor();
 
-				BleachLogger.info("Reset the watermark text and colors!");
+				GrayLogger.info("Reset the watermark text and colors!");
 			} else if (args[1].equalsIgnoreCase("color")) {
-				BleachHack.watermark.reset(false, true);
+				GrayHack.watermark.reset(false, true);
 				saveColor();
 
-				BleachLogger.info("Reset the watermark colors!");
+				GrayLogger.info("Reset the watermark colors!");
 			} else if (args[1].equalsIgnoreCase("text")) {
-				BleachHack.watermark.reset(true, false);
+				GrayHack.watermark.reset(true, false);
 				saveText();
 
-				BleachLogger.info("Reset the watermark text!");
+				GrayLogger.info("Reset the watermark text!");
 			} else {
 				throw new CmdSyntaxException();
 			}
@@ -82,21 +82,21 @@ public class CmdWatermark extends Command {
 					throw new CmdSyntaxException("The watermark can't be less than 2 characters long.");
 				}
 
-				BleachHack.watermark.setStrings(args[1], args.length == 3 ? args[2] : "");
+				GrayHack.watermark.setStrings(args[1], args.length == 3 ? args[2] : "");
 				saveText();
 
-				BleachLogger.info(Text.literal("Set the watermark to ").append(BleachHack.watermark.getText()));
+				GrayLogger.info(Text.literal("Set the watermark to ").append(GrayHack.watermark.getText()));
 			} else if (args[0].equalsIgnoreCase("color")) {
 				if (args.length > 3) {
 					throw new CmdSyntaxException("The watermark can't contain more than 2 colors.");
 				}
 
-				BleachHack.watermark.setColor(
+				GrayHack.watermark.setColor(
 						Integer.parseInt(args[1].replace("x", "").replace("#", ""), 16),
-						args.length == 3 ? Integer.parseInt(args[2].replace("x", "").replace("#", ""), 16) : BleachHack.watermark.getColor2());
+						args.length == 3 ? Integer.parseInt(args[2].replace("x", "").replace("#", ""), 16) : GrayHack.watermark.getColor2());
 				saveColor();
 				
-				BleachLogger.info(Text.literal("Set the watermark to ").append(BleachHack.watermark.getText()));
+				GrayLogger.info(Text.literal("Set the watermark to ").append(GrayHack.watermark.getText()));
 			} else {
 				throw new CmdSyntaxException();
 			}
@@ -104,12 +104,12 @@ public class CmdWatermark extends Command {
 	}
 
 	private void saveColor() {
-		BleachFileHelper.saveMiscSetting("watermarkColor1", new JsonPrimitive(BleachHack.watermark.getColor1()));
-		BleachFileHelper.saveMiscSetting("watermarkColor2", new JsonPrimitive(BleachHack.watermark.getColor2()));
+		GrayFileHelper.saveMiscSetting("watermarkColor1", new JsonPrimitive(GrayHack.watermark.getColor1()));
+		GrayFileHelper.saveMiscSetting("watermarkColor2", new JsonPrimitive(GrayHack.watermark.getColor2()));
 	}
 	
 	private void saveText() {
-		BleachFileHelper.saveMiscSetting("watermarkText1", new JsonPrimitive(BleachHack.watermark.getString1()));
-		BleachFileHelper.saveMiscSetting("watermarkText2", new JsonPrimitive(BleachHack.watermark.getString2()));
+		GrayFileHelper.saveMiscSetting("watermarkText1", new JsonPrimitive(GrayHack.watermark.getString1()));
+		GrayFileHelper.saveMiscSetting("watermarkText2", new JsonPrimitive(GrayHack.watermark.getString2()));
 	}
 }

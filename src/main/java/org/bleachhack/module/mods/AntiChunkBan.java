@@ -1,7 +1,7 @@
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
 
 public class AntiChunkBan extends Module {
 

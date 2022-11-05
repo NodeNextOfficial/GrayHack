@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import com.google.common.collect.Lists;
 import com.google.common.io.Resources;
@@ -34,21 +34,21 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameMode;
 import org.apache.commons.lang3.StringUtils;
-import org.bleachhack.BleachHack;
-import org.bleachhack.command.commands.CmdEntityStats;
-import org.bleachhack.event.events.EventEntityRender;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingMode;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.WorldRenderer;
-import org.bleachhack.util.world.EntityUtils;
+import org.grayhack.GrayHack;
+import org.grayhack.command.commands.CmdEntityStats;
+import org.grayhack.event.events.EventEntityRender;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingMode;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.WorldRenderer;
+import org.grayhack.util.world.EntityUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -124,7 +124,7 @@ public class Nametags extends Module {
 		uuidExecutor = Executors.newFixedThreadPool(4);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		// collect revenue from all the future copies
 		for (Entry<UUID, Future<String>> f: new HashMap<>(uuidFutures).entrySet()) {
@@ -146,7 +146,7 @@ public class Nametags extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onLivingLabelRender(EventEntityRender.Single.Label event) {
 		if ((event.getEntity() instanceof PlayerEntity && getSetting(1).asToggle().getState())
 				|| (EntityUtils.isAnimal(event.getEntity()) && getSetting(2).asToggle().getState())
@@ -156,7 +156,7 @@ public class Nametags extends Module {
 			event.setCancelled(true);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onWorldRender(EventWorldRender.Post event) {
 		for (Entity entity: mc.world.getEntities()) {
 			if (entity == mc.player || entity.hasPassenger(mc.player) || mc.player.hasPassenger(entity)) {
@@ -266,7 +266,7 @@ public class Nametags extends Module {
 		}
 
 		if (getSetting(1).asToggle().getChild(2).asToggle().getState()) { // Name
-			mainText.add(((MutableText) player.getName()).formatted(BleachHack.friendMang.has(player) ? Formatting.AQUA : Formatting.RED));
+			mainText.add(((MutableText) player.getName()).formatted(GrayHack.friendMang.has(player) ? Formatting.AQUA : Formatting.RED));
 		}
 
 		if (getSetting(1).asToggle().getChild(3).asToggle().getState()) { // Health
@@ -435,12 +435,12 @@ public class Nametags extends Module {
 			try {
 				String url = "https://api.mojang.com/user/profiles/" + uuid.toString().replace("-", "") + "/names";
 				String response = Resources.toString(new URL(url), StandardCharsets.UTF_8);
-				BleachLogger.logger.info("bruh uuid time: " + url);
+				GrayLogger.logger.info("bruh uuid time: " + url);
 
 				JsonElement json = JsonParser.parseString(response);
 
 				if (!json.isJsonArray()) {
-					BleachLogger.logger.error("[Nametags] Invalid Owner UUID: " + uuid);
+					GrayLogger.logger.error("[Nametags] Invalid Owner UUID: " + uuid);
 					return "\u00a7c[Invalid]";
 				}
 
@@ -448,7 +448,7 @@ public class Nametags extends Module {
 
 				return ja.get(ja.size() - 1).getAsJsonObject().get("name").getAsString();
 			} catch (IOException e) {
-				BleachLogger.logger.error("[Nametags] Error Getting Owner UUID: " + uuid);
+				GrayLogger.logger.error("[Nametags] Error Getting Owner UUID: " + uuid);
 				return "\u00a7c[Error]";
 			}
 		}));

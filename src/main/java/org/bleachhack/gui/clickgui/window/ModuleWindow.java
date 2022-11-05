@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.gui.clickgui.window;
+package org.grayhack.gui.clickgui.window;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.module.mods.ClickGui;
-import org.bleachhack.setting.module.ModuleSetting;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.module.mods.ClickGui;
+import org.grayhack.setting.module.ModuleSetting;
 
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;

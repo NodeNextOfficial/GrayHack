@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
@@ -21,22 +21,22 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingBlockList;
-import org.bleachhack.setting.module.SettingList;
-import org.bleachhack.setting.module.SettingMode;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.io.BleachFileMang;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.color.LineColor;
-import org.bleachhack.util.render.color.QuadColor;
-import org.bleachhack.util.world.ChunkProcessor;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingBlockList;
+import org.grayhack.setting.module.SettingList;
+import org.grayhack.setting.module.SettingMode;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.io.GrayFileMang;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.color.LineColor;
+import org.grayhack.util.render.color.QuadColor;
+import org.grayhack.util.world.ChunkProcessor;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -91,8 +91,8 @@ public class Search extends Module {
 				}
 
 				if (logBuilder.length() != 0) {
-					BleachFileMang.createFile("search/" + logFile);
-					BleachFileMang.appendFile("search/" + logFile, logBuilder.toString());
+					GrayFileMang.createFile("search/" + logFile);
+					GrayFileMang.appendFile("search/" + logFile, logBuilder.toString());
 				}
 			},
 			(cp, chunk) ->
@@ -120,7 +120,7 @@ public class Search extends Module {
 				new SettingToggle("Tracers", false).withDesc("Renders a line from the player to all found blocks.").withChildren(
 						new SettingSlider("Width", 0.1, 5, 1.5, 1).withDesc("Thickness of the tracers."),
 						new SettingSlider("Opacity", 0, 1, 0.75, 2).withDesc("Opacity of the tracers.")),
-				new SettingToggle("LogBlocks", false).withDesc("Saves all the found blocks in .minecraft/bleach/search/"),
+				new SettingToggle("LogBlocks", false).withDesc("Saves all the found blocks in .minecraft/gray/search/"),
 				new SettingBlockList("Edit Blocks", "Edit Search Blocks",
 						Blocks.DIAMOND_ORE,
 						Blocks.EMERALD_ORE,
@@ -146,7 +146,7 @@ public class Search extends Module {
 		logFile = "Search-" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")) + ".log";
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		Set<Block> blockList = getSetting(5).asList(Block.class).getValue();
 
@@ -160,7 +160,7 @@ public class Search extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onReadPacket(EventPacket.Read event) {
 		if (event.getPacket() instanceof DisconnectS2CPacket
 				|| event.getPacket() instanceof GameJoinS2CPacket
@@ -171,7 +171,7 @@ public class Search extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRender(EventWorldRender.Post event) {
 		int mode = getSetting(0).asMode().getMode();
 

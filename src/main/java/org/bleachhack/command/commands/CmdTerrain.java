@@ -1,17 +1,17 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.command.commands;
+package org.grayhack.command.commands;
 
-import org.bleachhack.command.Command;
-import org.bleachhack.command.CommandCategory;
-import org.bleachhack.command.exception.CmdSyntaxException;
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.command.Command;
+import org.grayhack.command.CommandCategory;
+import org.grayhack.command.exception.CmdSyntaxException;
+import org.grayhack.util.GrayLogger;
 
 import net.minecraft.util.math.BlockPos;
 
@@ -56,6 +56,6 @@ public class CmdTerrain extends Command {
 		}
 
 		mc.keyboard.setClipboard(builder.toString().trim());
-		BleachLogger.info("Copied terrain to clipboard!");
+		GrayLogger.info("Copied terrain to clipboard!");
 	}
 }

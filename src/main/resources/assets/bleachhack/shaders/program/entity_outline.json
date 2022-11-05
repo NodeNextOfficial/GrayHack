@@ -5,7 +5,7 @@
         "dstrgb": "1-srcalpha"
     },
     "vertex": "sobel",
-    "fragment": "bleachhack:entity_outline",
+    "fragment": "grayhack:entity_outline",
     "attributes": [ "Position" ],
     "samplers": [
         { "name": "DiffuseSampler" }

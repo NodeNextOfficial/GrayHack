@@ -1,21 +1,21 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.setting.module;
+package org.grayhack.setting.module;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 
-import org.bleachhack.gui.clickgui.window.ClickGuiWindow.Tooltip;
-import org.bleachhack.setting.SettingDataHandlers;
-import org.bleachhack.gui.clickgui.window.ModuleWindow;
+import org.grayhack.gui.clickgui.window.ClickGuiWindow.Tooltip;
+import org.grayhack.setting.SettingDataHandlers;
+import org.grayhack.gui.clickgui.window.ModuleWindow;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

@@ -1,19 +1,19 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.gui;
+package org.grayhack.gui;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.gui.window.WindowScreen;
-import org.bleachhack.util.collections.MutablePairList;
-import org.bleachhack.util.io.BleachFileHelper;
+import org.grayhack.gui.window.Window;
+import org.grayhack.gui.window.WindowScreen;
+import org.grayhack.util.collections.MutablePairList;
+import org.grayhack.util.io.GrayFileHelper;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
@@ -255,7 +255,7 @@ public class EntityMenuEditScreen extends WindowScreen {
 			json.add(entry.getLeft(), new JsonPrimitive(entry.getRight()));
 		}
 
-		BleachFileHelper.saveMiscSetting("entityMenu", json);
+		GrayFileHelper.saveMiscSetting("entityMenu", json);
 
 		super.close();
 	}

@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack;
+package org.grayhack;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -18,47 +18,47 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.concurrent.CompletableFuture;
 
 import org.apache.logging.log4j.Level;
-import org.bleachhack.command.CommandManager;
-import org.bleachhack.command.CommandSuggestor;
-import org.bleachhack.eventbus.BleachEventBus;
-import org.bleachhack.eventbus.handler.InexactEventHandler;
-import org.bleachhack.gui.BleachTitleScreen;
-import org.bleachhack.gui.clickgui.ModuleClickGuiScreen;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.setting.option.Option;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.BleachPlayerManager;
-import org.bleachhack.util.FriendManager;
-import org.bleachhack.util.Watermark;
-import org.bleachhack.util.io.BleachFileHelper;
-import org.bleachhack.util.io.BleachFileMang;
-import org.bleachhack.util.io.BleachJsonHelper;
-import org.bleachhack.util.io.BleachOnlineMang;
+import org.grayhack.command.CommandManager;
+import org.grayhack.command.CommandSuggestor;
+import org.grayhack.eventbus.GrayEventBus;
+import org.grayhack.eventbus.handler.InexactEventHandler;
+import org.grayhack.gui.GrayTitleScreen;
+import org.grayhack.gui.clickgui.ModuleClickGuiScreen;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.setting.option.Option;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.GrayPlayerManager;
+import org.grayhack.util.FriendManager;
+import org.grayhack.util.Watermark;
+import org.grayhack.util.io.GrayFileHelper;
+import org.grayhack.util.io.GrayFileMang;
+import org.grayhack.util.io.GrayJsonHelper;
+import org.grayhack.util.io.GrayOnlineMang;
 
-public class BleachHack implements ModInitializer {
+public class GrayHack implements ModInitializer {
 
-	private static BleachHack instance = null;
+	private static GrayHack instance = null;
 
 	public static final String VERSION = "1.2.6";
 	public static final int INTVERSION = 40;
 	public static Watermark watermark;
 
-	public static BleachEventBus eventBus;
+	public static GrayEventBus eventBus;
 
 	public static FriendManager friendMang;
-	public static BleachPlayerManager playerMang;
+	public static GrayPlayerManager playerMang;
 
 	private static CompletableFuture<JsonObject> updateJson;
 
-	//private BleachFileMang bleachFileManager;
+	//private GrayFileMang grayFileManager;
 
-	public static BleachHack getInstance() {
+	public static GrayHack getInstance() {
 		return instance;
 	}
 
-	public BleachHack() {
+	public GrayHack() {
 		if (instance != null) {
-			throw new RuntimeException("A BleachHack instance already exists.");
+			throw new RuntimeException("A GrayHack instance already exists.");
 		}
 	}
 
@@ -70,34 +70,34 @@ public class BleachHack implements ModInitializer {
 
 		instance = this;
 		watermark = new Watermark();
-		eventBus = new BleachEventBus(new InexactEventHandler("bleachhack"), BleachLogger.logger);
+		eventBus = new GrayEventBus(new InexactEventHandler("grayhack"), GrayLogger.logger);
 
 		friendMang = new FriendManager();
-		playerMang = new BleachPlayerManager();
+		playerMang = new GrayPlayerManager();
 
 		//this.eventBus = new EventBus();
-		//this.bleachFileManager = new BleachFileMang();
+		//this.grayFileManager = new GrayFileMang();
 
-		BleachFileMang.init();
+		GrayFileMang.init();
 
-		BleachFileHelper.readOptions();
-		BleachFileHelper.readFriends();
+		GrayFileHelper.readOptions();
+		GrayFileHelper.readFriends();
 
 		if (Option.PLAYERLIST_SHOW_AS_BH_USER.getValue()) {
 			playerMang.startPinger();
 		}
 
 		if (Option.GENERAL_CHECK_FOR_UPDATES.getValue()) {
-			updateJson = BleachOnlineMang.getResourceAsync("update/" + SharedConstants.getGameVersion().getName().replace(' ', '_') + ".json", BodyHandlers.ofString())
-					.thenApply(s -> BleachJsonHelper.parseOrNull(s, JsonObject.class));
+			updateJson = GrayOnlineMang.getResourceAsync("update/" + SharedConstants.getGameVersion().getName().replace(' ', '_') + ".json", BodyHandlers.ofString())
+					.thenApply(s -> GrayJsonHelper.parseOrNull(s, JsonObject.class));
 		}
 
-		JsonElement mainMenu = BleachFileHelper.readMiscSetting("customTitleScreen");
+		JsonElement mainMenu = GrayFileHelper.readMiscSetting("customTitleScreen");
 		if (mainMenu != null && !mainMenu.getAsBoolean()) {
-			BleachTitleScreen.customTitleScreen = false;
+			GrayTitleScreen.customTitleScreen = false;
 		}
 
-		BleachLogger.logger.log(Level.INFO, "Loaded BleachHack (Phase 1) in %d ms.", System.currentTimeMillis() - initStartTime);
+		GrayLogger.logger.log(Level.INFO, "Loaded GrayHack (Phase 1) in %d ms.", System.currentTimeMillis() - initStartTime);
 	}
 
 	// Phase 2
@@ -105,20 +105,20 @@ public class BleachHack implements ModInitializer {
 	public void postInit() {
 		long initStartTime = System.currentTimeMillis();
 
-		ModuleManager.loadModules(this.getClass().getClassLoader().getResourceAsStream("bleachhack.modules.json"));
-		BleachFileHelper.readModules();
+		ModuleManager.loadModules(this.getClass().getClassLoader().getResourceAsStream("grayhack.modules.json"));
+		GrayFileHelper.readModules();
 
 		// TODO: move ClickGui and UI to phase 1
 		ModuleClickGuiScreen.INSTANCE.initWindows();
-		BleachFileHelper.readClickGui();
-		BleachFileHelper.readUI();
+		GrayFileHelper.readClickGui();
+		GrayFileHelper.readUI();
 
-		CommandManager.loadCommands(this.getClass().getClassLoader().getResourceAsStream("bleachhack.commands.json"));
+		CommandManager.loadCommands(this.getClass().getClassLoader().getResourceAsStream("grayhack.commands.json"));
 		CommandSuggestor.start();
 
-		BleachFileHelper.startSavingExecutor();
+		GrayFileHelper.startSavingExecutor();
 
-		BleachLogger.logger.log(Level.INFO, "Loaded BleachHack (Phase 2) in %d ms.", System.currentTimeMillis() - initStartTime);
+		GrayLogger.logger.log(Level.INFO, "Loaded GrayHack (Phase 2) in %d ms.", System.currentTimeMillis() - initStartTime);
 	}
 
 	public static JsonObject getUpdateJson() {

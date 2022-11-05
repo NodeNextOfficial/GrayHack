@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
@@ -23,21 +23,21 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.bleachhack.BleachHack;
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.event.events.EventRenderInGameHud;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.gui.clickgui.UIClickGuiScreen;
-import org.bleachhack.gui.clickgui.window.UIContainer;
-import org.bleachhack.gui.clickgui.window.UIWindow;
-import org.bleachhack.gui.clickgui.window.UIWindow.Position;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.setting.module.SettingMode;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
+import org.grayhack.GrayHack;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.event.events.EventRenderInGameHud;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.gui.clickgui.UIClickGuiScreen;
+import org.grayhack.gui.clickgui.window.UIContainer;
+import org.grayhack.gui.clickgui.window.UIWindow;
+import org.grayhack.gui.clickgui.window.UIWindow.Position;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.setting.module.SettingMode;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -68,7 +68,7 @@ public class UI extends Module {
 						new SettingToggle("InnerLine", true).withDesc("Adds an extra line to the front of the module list."),
 						new SettingToggle("OuterLine", false).withDesc("Adds an outer line to the module list."),
 						new SettingToggle("Fill", true).withDesc("Adds a black fill behind the module list."),
-						new SettingToggle("Watermark", true).withDesc("Adds the BleachHack watermark to the module list.").withChildren(
+						new SettingToggle("Watermark", true).withDesc("Adds the GrayHack watermark to the module list.").withChildren(
 								new SettingMode("Mode", "New", "Old").withDesc("The watermark type.")),
 						new SettingSlider("HueBright", 0, 1, 1, 2).withDesc("The hue of the rainbow."),
 						new SettingSlider("HueSat", 0, 1, 0.5, 2).withDesc("The saturation of the rainbow."),
@@ -184,7 +184,7 @@ public class UI extends Module {
 				);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		// ModuleList
 		moduleListText.clear();
@@ -199,9 +199,9 @@ public class UI extends Module {
 			int watermarkMode = getSetting(0).asToggle().getChild(3).asToggle().getChild(0).asMode().getMode();
 
 			if (watermarkMode == 0) {
-				moduleListText.add(0, BleachHack.watermark.getText().append(Text.literal(" " + BleachHack.VERSION).styled(s -> s.withColor(TextColor.fromRgb(0xf0f0f0)))));
+				moduleListText.add(0, GrayHack.watermark.getText().append(Text.literal(" " + GrayHack.VERSION).styled(s -> s.withColor(TextColor.fromRgb(0xf0f0f0)))));
 			} else {
-				moduleListText.add(0, Text.literal("\u00a7a> BleachHack " + BleachHack.VERSION));
+				moduleListText.add(0, Text.literal("\u00a7a> GrayHack " + GrayHack.VERSION));
 			}
 		}
 
@@ -262,7 +262,7 @@ public class UI extends Module {
 				.append(Text.literal(timeString).styled(s -> s.withColor(Formatting.YELLOW)));
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onDrawOverlay(EventRenderInGameHud event) {
 		if (mc.currentScreen instanceof UIClickGuiScreen) {
 			return;
@@ -471,7 +471,7 @@ public class UI extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void readPacket(EventPacket.Read event) {
 		lastPacket = System.currentTimeMillis();
 

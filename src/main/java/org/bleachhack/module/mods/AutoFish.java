@@ -1,16 +1,16 @@
 /*
  * some licence stuff here
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import java.util.Comparator;
 
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingMode;
-import org.bleachhack.util.InventoryUtils;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingMode;
+import org.grayhack.util.InventoryUtils;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.projectile.FishingBobberEntity;
@@ -36,7 +36,7 @@ public class AutoFish extends Module {
 		super.onDisable(inWorld);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (mc.player.fishHook != null) {
 			threwRod = false;

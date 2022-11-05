@@ -1,18 +1,18 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.mixin;
+package org.grayhack.mixin;
 
 import net.minecraft.network.PacketCallbacks;
-import org.bleachhack.BleachHack;
-import org.bleachhack.command.Command;
-import org.bleachhack.command.CommandManager;
-import org.bleachhack.event.events.EventPacket;
+import org.grayhack.GrayHack;
+import org.grayhack.command.Command;
+import org.grayhack.command.CommandManager;
+import org.grayhack.event.events.EventPacket;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -37,7 +37,7 @@ public class MixinClientConnection {
 	private void channelRead0(ChannelHandlerContext channelHandlerContext, Packet<?> packet, CallbackInfo callback) {
 		if (this.channel.isOpen() && packet != null) {
 			EventPacket.Read event = new EventPacket.Read(packet);
-			BleachHack.eventBus.post(event);
+			GrayHack.eventBus.post(event);
 
 			if (event.isCancelled()) {
 				callback.cancel();
@@ -62,7 +62,7 @@ public class MixinClientConnection {
 		}
 
 		EventPacket.Send event = new EventPacket.Send(packet);
-		BleachHack.eventBus.post(event);
+		GrayHack.eventBus.post(event);
 
 		if (event.isCancelled()) {
 			callback.cancel();
@@ -71,9 +71,9 @@ public class MixinClientConnection {
 
 	private void handlePlayerList(PlayerListS2CPacket packet) {
 		if (packet.getAction() == PlayerListS2CPacket.Action.ADD_PLAYER) {
-			BleachHack.playerMang.addQueueEntries(packet.getEntries());
+			GrayHack.playerMang.addQueueEntries(packet.getEntries());
 		} else if (packet.getAction() == PlayerListS2CPacket.Action.REMOVE_PLAYER) {
-			BleachHack.playerMang.removeQueueEntries(packet.getEntries());
+			GrayHack.playerMang.removeQueueEntries(packet.getEntries());
 		}
 	}
 }

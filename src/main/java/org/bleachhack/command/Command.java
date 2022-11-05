@@ -1,19 +1,19 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.command;
+package org.grayhack.command;
 
 import net.minecraft.client.MinecraftClient;
 
 import net.minecraft.text.Text;
 import org.apache.commons.lang3.ArrayUtils;
-import org.bleachhack.setting.option.Option;
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.setting.option.Option;
+import org.grayhack.util.GrayLogger;
 
 import java.util.stream.Stream;
 
@@ -59,9 +59,9 @@ public abstract class Command {
 
 	public Text getHelpTooltip() {
 		return Text.literal("\u00a77Category: " + getCategory() + "\n")
-				.append("Aliases: \u00a7f" + getPrefix() + String.join(" \u00a77/\u00a7f " + getPrefix(), getAliases()) + "\n").styled(s -> s.withColor(BleachLogger.INFO_COLOR))
-				.append("Usage: \u00a7f" + getSyntax() + "\n").styled(s -> s.withColor(BleachLogger.INFO_COLOR))
-				.append("Description: \u00a7f" + getDescription()).styled(s -> s.withColor(BleachLogger.INFO_COLOR));
+				.append("Aliases: \u00a7f" + getPrefix() + String.join(" \u00a77/\u00a7f " + getPrefix(), getAliases()) + "\n").styled(s -> s.withColor(GrayLogger.INFO_COLOR))
+				.append("Usage: \u00a7f" + getSyntax() + "\n").styled(s -> s.withColor(GrayLogger.INFO_COLOR))
+				.append("Description: \u00a7f" + getDescription()).styled(s -> s.withColor(GrayLogger.INFO_COLOR));
 	}
 
 	public abstract void onCommand(String alias, String[] args) throws Exception;

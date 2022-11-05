@@ -1,10 +1,10 @@
-package org.bleachhack.setting.option;
+package org.grayhack.setting.option;
 
 import java.util.function.Function;
 
-import org.bleachhack.gui.window.widget.WindowTextFieldWidget;
-import org.bleachhack.gui.window.widget.WindowWidget;
-import org.bleachhack.setting.SettingDataHandlers;
+import org.grayhack.gui.window.widget.WindowTextFieldWidget;
+import org.grayhack.gui.window.widget.WindowWidget;
+import org.grayhack.setting.SettingDataHandlers;
 
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.widget.TextFieldWidget;

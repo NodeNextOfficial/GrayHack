@@ -1,20 +1,20 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module;
+package org.grayhack.module;
 
 import com.google.gson.annotations.SerializedName;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 import org.apache.commons.io.IOUtils;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.collections.NameableStorage;
-import org.bleachhack.util.io.BleachJsonHelper;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.collections.NameableStorage;
+import org.grayhack.util.io.GrayJsonHelper;
 import org.lwjgl.glfw.GLFW;
 
 import java.io.InputStream;
@@ -31,7 +31,7 @@ public class ModuleManager {
 		InputStreamReader inputReader = new InputStreamReader(jsonInputStream, StandardCharsets.UTF_8);
 
 		try {
-			ModuleListJson json = BleachJsonHelper.GSON.fromJson(inputReader, ModuleListJson.class);
+			ModuleListJson json = GrayJsonHelper.GSON.fromJson(inputReader, ModuleListJson.class);
 
 			for (String moduleString : json.getModules()) {
 				try {
@@ -43,14 +43,14 @@ public class ModuleManager {
 
 							loadModule(module);
 						} catch (Exception exception) {
-							BleachLogger.logger.error("Failed to load module %s: could not instantiate.", moduleClass);
+							GrayLogger.logger.error("Failed to load module %s: could not instantiate.", moduleClass);
 							exception.printStackTrace();
 						}
 					} else {
-						BleachLogger.logger.error("Failed to load module %s: not a descendant of Module.", moduleClass);
+						GrayLogger.logger.error("Failed to load module %s: not a descendant of Module.", moduleClass);
 					}
 				} catch (Exception exception) {
-					BleachLogger.logger.error("Failed to load module %s.", moduleString);
+					GrayLogger.logger.error("Failed to load module %s.", moduleString);
 					exception.printStackTrace();
 				}
 			}
@@ -61,7 +61,7 @@ public class ModuleManager {
 
 	public static void loadModule(Module module) {
 		if (!MODULES.add(module))
-			BleachLogger.logger.error("Failed to load module %s: a module with this name is already loaded.", module.getName());
+			GrayLogger.logger.error("Failed to load module %s: a module with this name is already loaded.", module.getName());
 	}
 
 	public static Iterable<Module> getModules() {

@@ -1,8 +1,8 @@
-package org.bleachhack.util.render;
+package org.grayhack.util.render;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.bleachhack.util.render.color.LineColor;
-import org.bleachhack.util.render.color.QuadColor;
+import org.grayhack.util.render.color.LineColor;
+import org.grayhack.util.render.color.QuadColor;
 
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.util.math.MatrixStack;

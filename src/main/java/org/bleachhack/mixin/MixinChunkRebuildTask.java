@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.mixin;
+package org.grayhack.mixin;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -16,9 +16,9 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import it.unimi.dsi.fastutil.objects.ReferenceArraySet;
-import org.bleachhack.BleachHack;
-import org.bleachhack.event.events.EventRenderBlock;
-import org.bleachhack.event.events.EventRenderFluid;
+import org.grayhack.GrayHack;
+import org.grayhack.event.events.EventRenderBlock;
+import org.grayhack.event.events.EventRenderFluid;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -107,7 +107,7 @@ public class MixinChunkRebuildTask {
 					bufferBuilder = buffers.get(renderLayer);
 
 					EventRenderFluid event = new EventRenderFluid(fluidState, blockPos3, bufferBuilder);
-					BleachHack.eventBus.post(event);
+					GrayHack.eventBus.post(event);
 
 					if (event.isCancelled())
 						continue;
@@ -127,7 +127,7 @@ public class MixinChunkRebuildTask {
 					}
 
 					EventRenderBlock.Tesselate event = new EventRenderBlock.Tesselate(blockState, blockPos3, matrixStack, bufferBuilder);
-					BleachHack.eventBus.post(event);
+					GrayHack.eventBus.post(event);
 
 					if (event.isCancelled())
 						continue;

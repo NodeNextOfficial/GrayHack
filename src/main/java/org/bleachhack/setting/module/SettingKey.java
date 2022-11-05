@@ -1,16 +1,16 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.setting.module;
+package org.grayhack.setting.module;
 
-import org.bleachhack.gui.clickgui.window.ModuleWindow;
-import org.bleachhack.module.Module;
-import org.bleachhack.setting.SettingDataHandlers;
+import org.grayhack.gui.clickgui.window.ModuleWindow;
+import org.grayhack.module.Module;
+import org.grayhack.setting.SettingDataHandlers;
 import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.client.MinecraftClient;

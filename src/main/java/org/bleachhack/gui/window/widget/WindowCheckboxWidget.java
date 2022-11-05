@@ -1,6 +1,6 @@
-package org.bleachhack.gui.window.widget;
+package org.grayhack.gui.window.widget;
 
-import org.bleachhack.gui.window.Window;
+import org.grayhack.gui.window.Window;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;

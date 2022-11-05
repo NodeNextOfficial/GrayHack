@@ -1,17 +1,17 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.util;
+package org.grayhack.util;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bleachhack.BleachHack;
+import org.grayhack.GrayHack;
 
 import net.minecraft.client.MinecraftClient;
 
@@ -19,9 +19,9 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-public class BleachLogger {
+public class GrayLogger {
 
-	public static final Logger logger = LogManager.getFormatterLogger("BleachHack");
+	public static final Logger logger = LogManager.getFormatterLogger("GrayHack");
 
 	public static int INFO_COLOR = 0x64b9fa;
 	public static int WARN_COLOR = Formatting.YELLOW.getColorValue();
@@ -92,7 +92,7 @@ public class BleachLogger {
 
 	private static MutableText getBHText(int color) {
 		return Text.literal("[").styled(s -> s.withColor(color))
-				.append(BleachHack.watermark.getText())
+				.append(GrayHack.watermark.getText())
 				.append(Text.literal("] ").styled(s -> s.withColor(color)));
 	}
 }

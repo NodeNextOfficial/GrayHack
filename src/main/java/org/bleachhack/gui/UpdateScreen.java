@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.gui;
+package org.grayhack.gui;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -21,12 +21,12 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 import org.apache.commons.io.FileUtils;
-import org.bleachhack.BleachHack;
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.gui.window.WindowScreen;
-import org.bleachhack.gui.window.widget.*;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.collections.ImmutablePairList;
+import org.grayhack.GrayHack;
+import org.grayhack.gui.window.Window;
+import org.grayhack.gui.window.WindowScreen;
+import org.grayhack.gui.window.widget.*;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.collections.ImmutablePairList;
 
 import java.io.File;
 import java.net.URI;
@@ -47,7 +47,7 @@ public class UpdateScreen extends WindowScreen {
 	private String updateResult = "";
 
 	public UpdateScreen(Screen parent, JsonObject updateJson) {
-		super(Text.literal("BleachHack Update Available"));
+		super(Text.literal("GrayHack Update Available"));
 		this.parent = parent;
 		this.updateJson = updateJson;
 	}
@@ -59,12 +59,12 @@ public class UpdateScreen extends WindowScreen {
 		addWindow(new Window(width / 2 - wd,
 				height / 16,
 				width / 2 + wd,
-				height - height / 16, String.format("BleachHack Update [%s -> %s]", BleachHack.VERSION, updateJson.get("name").getAsString()), new ItemStack(Items.MAGENTA_GLAZED_TERRACOTTA)));
+				height - height / 16, String.format("GrayHack Update [%s -> %s]", GrayHack.VERSION, updateJson.get("name").getAsString()), new ItemStack(Items.MAGENTA_GLAZED_TERRACOTTA)));
 
 		int w = getWindow(0).x2 - getWindow(0).x1;
 		int h = getWindow(0).y2 - getWindow(0).y1;
 
-		getWindow(0).addWidget(new WindowTextWidget("A new BleachHack update is available.", true, WindowTextWidget.TextAlign.MIDDLE, 1.5f, w / 2, 18, 0xe0e0e0));
+		getWindow(0).addWidget(new WindowTextWidget("A new GrayHack update is available.", true, WindowTextWidget.TextAlign.MIDDLE, 1.5f, w / 2, 18, 0xe0e0e0));
 		getWindow(0).addWidget(new WindowBoxWidget(3, 50, w - 3, h - 23));
 
 		ImmutablePairList<String, Boolean> changelog = new ImmutablePairList<>();
@@ -102,7 +102,7 @@ public class UpdateScreen extends WindowScreen {
 
 		getWindow(0).addWidget(
 				new WindowButtonWidget(3, h - 21, w / 2 - 2, h - 3, "Website", () ->
-				Util.getOperatingSystem().open(URI.create("https://bleachhack.org/"))
+				Util.getOperatingSystem().open(URI.create("https://grayhack.org/"))
 						));
 
 		getWindow(0).addWidget(
@@ -118,7 +118,7 @@ public class UpdateScreen extends WindowScreen {
 							return;
 						}
 
-						File modpath = new File(FabricLoader.getInstance().getModContainer("bleachhack").get().getOrigin().getPaths().get(0).toUri());
+						File modpath = new File(FabricLoader.getInstance().getModContainer("grayhack").get().getOrigin().getPaths().get(0).toUri());
 
 						if (!modpath.isFile()) {
 							updateResult = "Invalid mod path!";
@@ -131,7 +131,7 @@ public class UpdateScreen extends WindowScreen {
 
 						File installerFile = new File(System.getProperty("java.io.tmpdir"), name);
 
-						BleachLogger.logger.info(
+						GrayLogger.logger.info(
 								"\n> Installer path: " + installerFile
 								+ "\n> Installer URL: " + link
 								+ "\n> Installer file name: " + name

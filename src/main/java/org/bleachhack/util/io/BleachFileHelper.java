@@ -1,30 +1,30 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.util.io;
+package org.grayhack.util.io;
 
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import org.bleachhack.BleachHack;
-import org.bleachhack.gui.clickgui.ModuleClickGuiScreen;
-import org.bleachhack.gui.clickgui.UIClickGuiScreen;
-import org.bleachhack.gui.clickgui.window.ClickGuiWindow;
-import org.bleachhack.gui.clickgui.window.UIWindow;
-import org.bleachhack.gui.clickgui.window.UIWindow.Position;
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.setting.module.ModuleSetting;
-import org.bleachhack.setting.option.Option;
-import org.bleachhack.util.BleachLogger;
+import org.grayhack.GrayHack;
+import org.grayhack.gui.clickgui.ModuleClickGuiScreen;
+import org.grayhack.gui.clickgui.UIClickGuiScreen;
+import org.grayhack.gui.clickgui.window.ClickGuiWindow;
+import org.grayhack.gui.clickgui.window.UIWindow;
+import org.grayhack.gui.clickgui.window.UIWindow.Position;
+import org.grayhack.gui.window.Window;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.setting.module.ModuleSetting;
+import org.grayhack.setting.option.Option;
+import org.grayhack.util.GrayLogger;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -35,7 +35,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class BleachFileHelper {
+public class GrayFileHelper {
 
 	private static ScheduledExecutorService savingExecutor;
 
@@ -87,11 +87,11 @@ public class BleachFileHelper {
 				json.add(mod.getName(), modjson);
 		}
 
-		BleachJsonHelper.setJsonFile("modules.json", json);
+		GrayJsonHelper.setJsonFile("modules.json", json);
 	}
 
 	public static void readModules() {
-		JsonObject jo = BleachJsonHelper.readJsonFile("modules.json");
+		JsonObject jo = GrayJsonHelper.readJsonFile("modules.json");
 
 		if (jo == null)
 			return;
@@ -108,7 +108,7 @@ public class BleachFileHelper {
 					try {
 						mod.setEnabled(mo.get("toggled").getAsBoolean());
 					} catch (Exception ex) {
-						BleachLogger.error("Error enabling " + e.getKey() + ", Disabling!");
+						GrayLogger.error("Error enabling " + e.getKey() + ", Disabling!");
 
 						try {
 							mod.setEnabled(false);
@@ -127,10 +127,10 @@ public class BleachFileHelper {
 							 if (s != null) {
 								 s.read(se.getValue());
 							 } else {
-								 BleachLogger.logger.warn("Error reading setting \"" + se.getKey() + "\" in module " + mod.getName() + ", removed?");
+								 GrayLogger.logger.warn("Error reading setting \"" + se.getKey() + "\" in module " + mod.getName() + ", removed?");
 							 }
 						} catch (Exception ex) {
-							BleachLogger.logger.error("Error reading setting \"" + se.getKey() + "\" in module " + mod.getName() + ": " + se.getValue(), ex);
+							GrayLogger.logger.error("Error reading setting \"" + se.getKey() + "\" in module " + mod.getName() + ": " + se.getValue(), ex);
 						}
 					}
 				}
@@ -159,11 +159,11 @@ public class BleachFileHelper {
 			jo.add(o.getName(), o.write());
 		}
 
-		BleachJsonHelper.setJsonFile("options.json", jo);
+		GrayJsonHelper.setJsonFile("options.json", jo);
 	}
 
 	public static void readOptions() {
-		JsonObject jo = BleachJsonHelper.readJsonFile("options.json");
+		JsonObject jo = GrayJsonHelper.readJsonFile("options.json");
 
 		if (jo == null)
 			return;
@@ -190,11 +190,11 @@ public class BleachFileHelper {
 			jo.add(w.title, jw);
 		}
 
-		BleachJsonHelper.setJsonFile("clickgui.json", jo);
+		GrayJsonHelper.setJsonFile("clickgui.json", jo);
 	}
 
 	public static void readClickGui() {
-		JsonObject jo = BleachJsonHelper.readJsonFile("clickgui.json");
+		JsonObject jo = GrayJsonHelper.readJsonFile("clickgui.json");
 
 		if (jo == null)
 			return;
@@ -215,7 +215,7 @@ public class BleachFileHelper {
 							((ClickGuiWindow) w).hiding = jw.get("hidden").getAsBoolean();
 						}
 					} catch (Exception ex) {
-						BleachLogger.logger.error("Error trying to load clickgui window: " + e.getKey() + " with data: " + e.getValue());
+						GrayLogger.logger.error("Error trying to load clickgui window: " + e.getKey() + " with data: " + e.getValue());
 					}
 				}
 			}
@@ -242,11 +242,11 @@ public class BleachFileHelper {
 			jo.add(w.getKey(), jw);
 		}
 
-		BleachJsonHelper.setJsonFile("ui.json", jo);
+		GrayJsonHelper.setJsonFile("ui.json", jo);
 	}
 
 	public static void readUI() {
-		JsonObject jo = BleachJsonHelper.readJsonFile("ui.json");
+		JsonObject jo = GrayJsonHelper.readJsonFile("ui.json");
 
 		if (jo == null)
 			return;
@@ -275,20 +275,20 @@ public class BleachFileHelper {
 	}
 
 	public static void readFriends() {
-		BleachHack.friendMang.addAll(BleachFileMang.readFileLines("friends.txt"));
+		GrayHack.friendMang.addAll(GrayFileMang.readFileLines("friends.txt"));
 	}
 
 	public static void saveFriends() {
 		String toWrite = "";
-		for (String s : BleachHack.friendMang.getFriends())
+		for (String s : GrayHack.friendMang.getFriends())
 			toWrite += s + "\n";
 
-		BleachFileMang.createEmptyFile("friends.txt");
-		BleachFileMang.appendFile("friends.txt", toWrite);
+		GrayFileMang.createEmptyFile("friends.txt");
+		GrayFileMang.appendFile("friends.txt", toWrite);
 	}
 
 	public static JsonElement readMiscSetting(String key) {
-		JsonElement element = BleachJsonHelper.readJsonElement("misc.json", key);
+		JsonElement element = GrayJsonHelper.readJsonElement("misc.json", key);
 
 		try {
 			return element;
@@ -298,6 +298,6 @@ public class BleachFileHelper {
 	}
 
 	public static void saveMiscSetting(String key, JsonElement value) {
-		BleachJsonHelper.addJsonElement("misc.json", key, value);
+		GrayJsonHelper.addJsonElement("misc.json", key, value);
 	}
 }

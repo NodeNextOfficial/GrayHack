@@ -1,23 +1,23 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventInteract;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.util.BleachLogger;
-import org.bleachhack.util.InventoryUtils;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.color.QuadColor;
+import org.grayhack.event.events.EventInteract;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.util.GrayLogger;
+import org.grayhack.util.InventoryUtils;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.color.QuadColor;
 
 import net.minecraft.block.PistonBlock;
 import net.minecraft.item.Items;
@@ -46,26 +46,26 @@ public class AutoBedrockBreak extends Module {
 		super.onDisable(inWorld);
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (pos != null) {
 			switch (step) {
 				case 0:
 					if (!mc.world.isSpaceEmpty(new Box(pos.up(), pos.add(1, 8, 1)))) {
 						reset();
-						BleachLogger.info("Not enough empty space to break this block!");
+						GrayLogger.info("Not enough empty space to break this block!");
 					} else if (InventoryUtils.getSlot(true, i -> mc.player.getInventory().getStack(i).getItem() == Items.PISTON) == -1) {
 						reset();
-						BleachLogger.info("Missing pistons!");
+						GrayLogger.info("Missing pistons!");
 					} else if (InventoryUtils.getSlot(true, i -> mc.player.getInventory().getStack(i).getItem() == Items.REDSTONE_BLOCK) == -1) {
 						reset();
-						BleachLogger.info("Missing a redstone block!");
+						GrayLogger.info("Missing a redstone block!");
 					} else if (InventoryUtils.getSlot(true, i -> mc.player.getInventory().getStack(i).getItem() == Items.TNT) == -1) {
 						reset();
-						BleachLogger.info("Missing TNT!");
+						GrayLogger.info("Missing TNT!");
 					} else if (InventoryUtils.getSlot(true, i -> mc.player.getInventory().getStack(i).getItem() == Items.LEVER) == -1) {
 						reset();
-						BleachLogger.info("Missing a lever!");
+						GrayLogger.info("Missing a lever!");
 					} else if (dirtyPlace(pos.up(3), InventoryUtils.getSlot(true, i -> mc.player.getInventory().getStack(i).getItem() == Items.REDSTONE_BLOCK), Direction.DOWN)) {
 						step++;
 					}
@@ -133,7 +133,7 @@ public class AutoBedrockBreak extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onWorldRender(EventWorldRender.Post event) {
 		if (pos == null) {
 			if (mc.crosshairTarget instanceof BlockHitResult
@@ -145,7 +145,7 @@ public class AutoBedrockBreak extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onInteract(EventInteract.InteractBlock event) {
 		if (pos == null && !mc.world.isAir(event.getHitResult().getBlockPos())) {
 			pos = event.getHitResult().getBlockPos();

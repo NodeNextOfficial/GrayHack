@@ -1,22 +1,22 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
-import org.bleachhack.event.events.EventEntityControl;
-import org.bleachhack.event.events.EventPacket;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.world.WorldUtils;
+import org.grayhack.event.events.EventEntityControl;
+import org.grayhack.event.events.EventPacket;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.world.WorldUtils;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemSteerable;
@@ -49,7 +49,7 @@ public class EntityControl extends Module {
 				new SettingToggle("AntiDismount", false).withDesc("Prevents you from getting distmounted by the server"));
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (mc.player.getVehicle() == null)
 			return;
@@ -120,7 +120,7 @@ public class EntityControl extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onSendPacket(EventPacket.Send event) {
 		if (getSetting(6).asToggle().getState()) {
 			if (event.getPacket() instanceof VehicleMoveC2SPacket) {
@@ -141,7 +141,7 @@ public class EntityControl extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onReadPacket(EventPacket.Read event) {
 		if (getSetting(7).asToggle().getState() && mc.player != null && mc.player.hasVehicle() && !mc.player.input.sneaking
 				&& (event.getPacket() instanceof PlayerPositionLookS2CPacket || event.getPacket() instanceof EntityPassengersSetS2CPacket)) {
@@ -149,7 +149,7 @@ public class EntityControl extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onEntityControl(EventEntityControl event) {
 		if (mc.player.getVehicle() instanceof ItemSteerable && mc.player.forwardSpeed == 0 && mc.player.sidewaysSpeed == 0) {
 			return;

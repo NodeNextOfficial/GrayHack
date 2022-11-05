@@ -1,26 +1,26 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import java.util.Map.Entry;
 import java.util.Optional;
 
-import org.bleachhack.command.Command;
-import org.bleachhack.event.events.EventRenderCrosshair;
-import org.bleachhack.event.events.EventTick;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.gui.EntityMenuScreen;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.collections.MutablePairList;
-import org.bleachhack.util.io.BleachFileHelper;
+import org.grayhack.command.Command;
+import org.grayhack.event.events.EventRenderCrosshair;
+import org.grayhack.event.events.EventTick;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.gui.EntityMenuScreen;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.collections.MutablePairList;
+import org.grayhack.util.io.GrayFileHelper;
 import org.lwjgl.glfw.GLFW;
 
 import com.google.gson.JsonElement;
@@ -44,7 +44,7 @@ public class EntityMenu extends Module {
 		super("EntityMenu", KEY_UNBOUND, ModuleCategory.MISC, "An interaction screen when looking at an entity and pressing the middle mouse button. Customizable via the " + Command.getPrefix() + "entitymenu command.",
 				new SettingToggle("PlayersOnly", false).withDesc("Only opens the menu when clicking on players."));
 	
-		JsonElement je = BleachFileHelper.readMiscSetting("entityMenu");
+		JsonElement je = GrayFileHelper.readMiscSetting("entityMenu");
 		
 		if (je != null && je.isJsonObject()) {
 			for (Entry<String, JsonElement> entry: je.getAsJsonObject().entrySet()) {
@@ -55,7 +55,7 @@ public class EntityMenu extends Module {
 		}
 	}
 	
-	@BleachSubscribe
+	@GraySubscribe
 	public void onTick(EventTick event) {
 		if (GLFW.glfwGetMouseButton(mc.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_MIDDLE) == GLFW.GLFW_PRESS && !buttonHeld) {
 			buttonHeld = true;
@@ -74,7 +74,7 @@ public class EntityMenu extends Module {
 		}
 	}
 	
-	@BleachSubscribe
+	@GraySubscribe
 	public void onRenderCrosshair(EventRenderCrosshair event) {
 		if (mc.currentScreen instanceof EntityMenuScreen) {
 			event.setCancelled(true);

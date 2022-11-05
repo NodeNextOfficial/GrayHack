@@ -1,12 +1,12 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.gui;
+package org.grayhack.gui;
 
 import net.minecraft.block.enums.Instrument;
 import net.minecraft.client.render.DiffuseLighting;
@@ -17,14 +17,14 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import org.apache.commons.lang3.StringUtils;
-import org.bleachhack.gui.window.Window;
-import org.bleachhack.gui.window.WindowScreen;
-import org.bleachhack.gui.window.widget.WindowButtonWidget;
-import org.bleachhack.module.ModuleManager;
-import org.bleachhack.module.mods.Notebot;
-import org.bleachhack.module.mods.Notebot.Song;
-import org.bleachhack.util.NotebotUtils;
-import org.bleachhack.util.io.BleachFileMang;
+import org.grayhack.gui.window.Window;
+import org.grayhack.gui.window.WindowScreen;
+import org.grayhack.gui.window.widget.WindowButtonWidget;
+import org.grayhack.module.ModuleManager;
+import org.grayhack.module.mods.Notebot;
+import org.grayhack.module.mods.Notebot.Song;
+import org.grayhack.util.NotebotUtils;
+import org.grayhack.util.io.GrayFileMang;
 
 import java.net.URI;
 import java.util.Map.Entry;
@@ -49,8 +49,8 @@ public class NotebotScreen extends WindowScreen {
 
 		files.clear();
 
-		BleachFileMang.getDir().resolve("notebot/").toFile().mkdirs();
-		for (String f: BleachFileMang.getDir().resolve("notebot/").toFile().list())
+		GrayFileMang.getDir().resolve("notebot/").toFile().mkdirs();
+		for (String f: GrayFileMang.getDir().resolve("notebot/").toFile().list())
 			files.add(f);
 
 		int ww = Math.max(width / 2, 360);
@@ -179,7 +179,7 @@ public class NotebotScreen extends WindowScreen {
 			if (entry != null) {
 				/* Pfft why use buttons when you can use meaningless rectangles with messy code */
 				if (mouseX > x + w - w / 2 + 10 && mouseX < x + w - w / 4 && mouseY > y + h - 15 && mouseY < y + h - 5) {
-					BleachFileMang.deleteFile("notebot/" + entry.filename);
+					GrayFileMang.deleteFile("notebot/" + entry.filename);
 					client.setScreen(this);
 				}
 				if (mouseX > x + w - w / 4 + 5 && mouseX < x + w - 5 && mouseY > y + h - 15 && mouseY < y + h - 5) {
@@ -202,7 +202,7 @@ public class NotebotScreen extends WindowScreen {
 					continue;
 	
 				if (mouseX > x + 5 && mouseX < x + 105 && mouseY > y + 15 + c * 10 && mouseY < y + 25 + c * 10) {
-					entry = NotebotUtils.parse(BleachFileMang.getDir().resolve("notebot/" + s));
+					entry = NotebotUtils.parse(GrayFileMang.getDir().resolve("notebot/" + s));
 					playing = false;
 					playTick = 0;
 					break;

@@ -1,32 +1,32 @@
 /*
- * This file is part of the BleachHack distribution (https://github.com/BleachDrinker420/BleachHack/).
- * Copyright (c) 2021 Bleach and contributors.
+ * This file is part of the GrayHack distribution (https://github.com/GrayDrinker420/GrayHack/).
+ * Copyright (c) 2021 Gray and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package org.bleachhack.module.mods;
+package org.grayhack.module.mods;
 
 import java.io.IOException;
 
-import org.bleachhack.BleachHack;
-import org.bleachhack.event.events.EventEntityRender;
-import org.bleachhack.event.events.EventWorldRender;
-import org.bleachhack.eventbus.BleachSubscribe;
-import org.bleachhack.module.Module;
-import org.bleachhack.module.ModuleCategory;
-import org.bleachhack.setting.module.SettingColor;
-import org.bleachhack.setting.module.SettingMode;
-import org.bleachhack.setting.module.SettingSlider;
-import org.bleachhack.setting.module.SettingToggle;
-import org.bleachhack.util.render.Renderer;
-import org.bleachhack.util.render.color.QuadColor;
-import org.bleachhack.util.shader.BleachCoreShaders;
-import org.bleachhack.util.shader.ColorVertexConsumerProvider;
-import org.bleachhack.util.shader.ShaderEffectWrapper;
-import org.bleachhack.util.shader.ShaderLoader;
-import org.bleachhack.util.world.EntityUtils;
+import org.grayhack.GrayHack;
+import org.grayhack.event.events.EventEntityRender;
+import org.grayhack.event.events.EventWorldRender;
+import org.grayhack.eventbus.GraySubscribe;
+import org.grayhack.module.Module;
+import org.grayhack.module.ModuleCategory;
+import org.grayhack.setting.module.SettingColor;
+import org.grayhack.setting.module.SettingMode;
+import org.grayhack.setting.module.SettingSlider;
+import org.grayhack.setting.module.SettingToggle;
+import org.grayhack.util.render.Renderer;
+import org.grayhack.util.render.color.QuadColor;
+import org.grayhack.util.shader.GrayCoreShaders;
+import org.grayhack.util.shader.ColorVertexConsumerProvider;
+import org.grayhack.util.shader.ShaderEffectWrapper;
+import org.grayhack.util.shader.ShaderLoader;
+import org.grayhack.util.world.EntityUtils;
 
 import com.google.gson.JsonSyntaxException;
 
@@ -76,21 +76,21 @@ public class ESP extends Module {
 		
 		try {
 			shader = new ShaderEffectWrapper(
-					ShaderLoader.loadEffect(mc.getFramebuffer(), new Identifier("bleachhack", "shaders/post/entity_outline.json")));
+					ShaderLoader.loadEffect(mc.getFramebuffer(), new Identifier("grayhack", "shaders/post/entity_outline.json")));
 			
-			colorVertexer = new ColorVertexConsumerProvider(shader.getFramebuffer("main"), BleachCoreShaders::getColorOverlayShader);
+			colorVertexer = new ColorVertexConsumerProvider(shader.getFramebuffer("main"), GrayCoreShaders::getColorOverlayShader);
 		} catch (JsonSyntaxException | IOException e) {
 			throw new RuntimeException("Failed to initialize ESP Shader! loaded too early?", e);
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onWorldRender(EventWorldRender.Pre event) {
 		shader.prepare();
 		shader.clearFramebuffer("main");
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onEntityRender(EventEntityRender.Single.Pre event) {
 		if (getSetting(0).asMode().getMode() != 0)
 			return;
@@ -102,7 +102,7 @@ public class ESP extends Module {
 		}
 	}
 
-	@BleachSubscribe
+	@GraySubscribe
 	public void onWorldRender(EventWorldRender.Post event) {
 		if (getSetting(0).asMode().getMode() == 0) {
 			colorVertexer.draw();
@@ -131,7 +131,7 @@ public class ESP extends Module {
 			return null;
 
 		if (e instanceof PlayerEntity && getSetting(4).asToggle().getState()) {
-			return getSetting(4).asToggle().getChild(BleachHack.friendMang.has(e) ? 1 : 0).asColor().getRGBArray();
+			return getSetting(4).asToggle().getChild(GrayHack.friendMang.has(e) ? 1 : 0).asColor().getRGBArray();
 		} else if (e instanceof Monster && getSetting(5).asToggle().getState()) {
 			return getSetting(5).asToggle().getChild(0).asColor().getRGBArray();
 		} else if (EntityUtils.isAnimal(e) && getSetting(6).asToggle().getState()) {
