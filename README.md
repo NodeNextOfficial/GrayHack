@@ -7,7 +7,7 @@
 ![](https://img.shields.io/badge/daily%20commit-yes-blue?style=flat-square)
 ![](https://img.shields.io/discord/620600892718055434?style=flat-square)
 
-Obama approved Minecraft utility mod for Fabric 1.18 and 1.19.
+Bloc Game utility mod for Fabric 1.18 and 1.19.
 
 > Website: https://grayhack.org/  
 > Discord: https://grayhack.org/discord
@@ -25,7 +25,7 @@ Obama approved Minecraft utility mod for Fabric 1.18 and 1.19.
 ## Installation
 ### For normal people
 
-Follow the Instructions on the [download page](https://grayhack.org/downloads.html).
+Follow the Instructions on the [download page]().
 
 ### For (200 IQ) developers
 
@@ -64,7 +64,7 @@ Generate the needed files for your preferred IDE.
   Use [this link](https://fabricmc.net/wiki/tutorial:setup) for more information.
   It should be pretty similar to the eclipse and idea setup.
   
-###### *To get the source code of Pre-1.17 versions, use [this](https://github.com/GrayDrinker420/GrayHack/tree/de55562e94) commit and select the folder of the version you want.*
+###### *To get the source code of Pre-1.17 versions, use [this]() commit and select the folder of the version you want.*
 
 ## Recommended Mods
 

@@ -116,59 +116,59 @@ public class CmdGive extends Command {
 			}
 			else if (args[1].equalsIgnoreCase("bookban")) {
 				tag = StringNbtReader.parse(
-						"{display:{Name:'{\"text\":\"Gray\\'s Bookban Shulker\",\"color\":\"aqua\",\"bold\":true,\"italic\":true,\"underlined\":true}'},BlockEntityTag:{Items:[{Slot:0b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+						"{display:{Name:'{\"text\":\"Gray\\'s Bookban Shulker\",\"color\":\"aqua\",\"bold\":true,\"italic\":true,\"underlined\":true}'},BlockEntityTag:{Items:[{Slot:0b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:1b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:1b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:2b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:2b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:3b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:3b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:4b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:4b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:5b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:5b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:6b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:6b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:7b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:7b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:8b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:8b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:9b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:9b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:10b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:10b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:11b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:11b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:12b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:12b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:13b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:13b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:14b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:14b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:15b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:15b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:16b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:16b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:17b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:17b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:18b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:18b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:19b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:19b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:20b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:20b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:21b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:21b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:22b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:22b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:23b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:23b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:24b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:24b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:25b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:25b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag()
-								+ "]}},{Slot:26b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"BLEACHHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
+								+ "]}},{Slot:26b,id:\"minecraft:writable_book\",Count:16b,tag:{display:{Name:'{\"text\":\"GrayHACK OWNS ALL\",\"color\":\"dark_red\",\"bold\":true}'},pages:["
 								+ getBookbanTag() + "]}}]}}");
 			}
 			else if (args[1].equalsIgnoreCase("test")) {
