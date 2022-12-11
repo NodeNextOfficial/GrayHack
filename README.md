@@ -1,16 +1,7 @@
 
 # GrayHack
-![](https://img.shields.io/github/downloads/graydev/GrayHack/total?style=flat-square)
-![](https://img.shields.io/tokei/lines/github/graydev/GrayHack?style=flat-square)
-![](https://img.shields.io/github/languages/code-size/graydev/GrayHack?style=flat-square)
-![](https://img.shields.io/github/last-commit/graydev/GrayHack?style=flat-square)
-![](https://img.shields.io/badge/daily%20commit-yes-blue?style=flat-square)
-![](https://img.shields.io/discord/620600892718055434?style=flat-square)
 
-Bloc Game utility mod for Fabric 1.18 and 1.19.
-
-> Website: https://grayhack.org/  
-> Discord: https://grayhack.org/discord
+Block Game utility mod for Fabric 1.19.
 
 ## Showcase
 <details>
